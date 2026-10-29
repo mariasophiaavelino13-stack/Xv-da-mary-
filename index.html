@@ -15,384 +15,235 @@
   box-sizing: border-box;
 }
 
-:root {
-  --ouro: #c5a66b;
-  --ouro-claro: #ead7a4;
-  --vinho: #641b2c;
-  --papel: #e8d4a5;
-  --tinta: #382516;
-}
-
-html {
-  min-height: 100%;
-  background: #000;
-}
-
 body {
   margin: 0;
   min-height: 100vh;
   background: #000;
-  color: var(--ouro-claro);
-  font-family: "Cinzel", serif;
+  color: #24170d;
+  font-family: 'Cinzel', serif;
   overflow-x: hidden;
 }
 
-button {
-  font-family: "Cinzel", serif;
-  cursor: pointer;
-}
-
-/* ENTRADA PRETA */
-
+/* TELA INICIAL */
 #entrada {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
   background: #000;
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-#entrada h1 {
-  margin: 0 0 35px;
-  color: var(--ouro-claro);
-  font-size: clamp(25px, 6vw, 38px);
-  font-weight: 500;
-  letter-spacing: 5px;
-  text-align: center;
+  padding: 20px;
 }
 
 .envelope {
   position: relative;
-  width: min(82vw, 360px);
+  width: min(82vw, 370px);
   height: 220px;
   background: #000;
   border: none;
+  outline: none;
+  box-shadow: none;
   perspective: 900px;
 }
 
-.corpo-envelope {
+.corpo {
   position: absolute;
   inset: 0;
   background: #000;
+  border: none;
+  box-shadow: none;
 }
 
 .aba {
   position: absolute;
-  inset: 0 0 auto 0;
-  height: 130px;
+  inset: 0 0 auto;
+  height: 135px;
   background: #000;
+  border: none;
+  outline: none;
+  box-shadow: none;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top center;
   transition: transform 1.2s ease;
   z-index: 3;
 }
 
-.envelope.aberto .aba {
-  transform: rotateX(180deg);
-}
-
+/* LACRE */
 .lacre {
   position: absolute;
   z-index: 5;
   top: 50%;
   left: 50%;
-  width: 72px;
-  height: 72px;
   transform: translate(-50%, -50%);
+  width: 43px;
+  height: 43px;
   border-radius: 50%;
-  border: 2px solid var(--ouro);
-  background:
-    radial-gradient(circle at 35% 30%, #8e3547, #641b2c 65%, #351019);
-  color: var(--ouro-claro);
-  box-shadow: 0 0 22px #000;
-  font-size: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid #71502d;
+  background: radial-gradient(circle, #5b351e, #24150c);
+  box-shadow: 0 0 12px #000;
+  cursor: pointer;
   transition: opacity .5s ease, transform .5s ease;
 }
 
-.lacre:hover {
-  transform: translate(-50%, -50%) scale(1.08);
+.envelope.aberto .aba {
+  transform: rotateX(180deg);
 }
 
 .envelope.aberto .lacre {
   opacity: 0;
   pointer-events: none;
-}
-
-.instrucao {
-  margin-top: 28px;
-  color: #b9a579;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-align: center;
+  transform: translate(-50%, -50%) scale(.4);
 }
 
 /* CONVITE */
-
 #convite {
   display: none;
   min-height: 100vh;
-  padding: 35px 14px 55px;
-  align-items: center;
-  justify-content: center;
+  padding: 35px 14px 60px;
   background: #000;
-  opacity: 0;
 }
 
 #convite.visivel {
-  display: flex;
-  animation: aparecer 1.2s ease forwards;
+  display: block;
+  animation: aparecer 1.2s ease;
 }
 
 @keyframes aparecer {
+  from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* PERGAMINHO */
-
 .pergaminho {
   position: relative;
-  width: min(100%, 570px);
+  width: min(100%, 950px);
+  min-height: 520px;
   margin: 0 auto;
-  padding: 32px 0;
-  transform-origin: center;
-}
-
-.rolinho {
-  position: relative;
-  z-index: 2;
-  height: 24px;
-  width: 100%;
-  border: 1px solid #a78a50;
-  border-radius: 50%;
+  padding: 65px 8% 70px;
   background:
-    linear-gradient(
-      to bottom,
-      #6e4a25 0%,
-      #d5b878 18%,
-      #f0dda9 42%,
-      #a37a3e 70%,
-      #5a3b20 100%
-    );
-  box-shadow: 0 3px 7px #000;
+    radial-gradient(ellipse at center, #f4e4b9 0%, #e4c991 72%, #c6a66e 100%);
+  border: 9px double #806039;
+  box-shadow: 0 0 35px #8b6b3c55;
+  overflow: hidden;
 }
 
-.rolinho.topo {
-  margin-bottom: -5px;
-}
-
-.rolinho.baixo {
-  margin-top: -5px;
-}
-
-.folha {
-  position: relative;
-  padding: 35px 25px 32px;
-  color: var(--tinta);
-  background:
-    radial-gradient(ellipse at 12% 10%, #f7e8bd 0%, transparent 38%),
-    radial-gradient(ellipse at 90% 85%, #b99559 0%, transparent 38%),
-    linear-gradient(105deg, #d6bd82, #f0dfb0 20%, #ead6a2 78%, #c6a46b);
-  clip-path: polygon(
-    2% 1%, 8% 0%, 15% 1%, 23% 0%, 31% 1%,
-    40% 0%, 49% 1%, 58% 0%, 67% 1%, 77% 0%,
-    87% 1%, 98% 0%, 99% 8%, 98% 18%, 100% 27%,
-    99% 38%, 100% 48%, 98% 59%, 100% 70%,
-    99% 82%, 100% 94%, 93% 99%, 83% 98%,
-    72% 100%, 61% 98%, 50% 100%, 39% 99%,
-    27% 100%, 16% 98%, 5% 100%, 1% 91%,
-    2% 80%, 0% 68%, 2% 57%, 0% 46%,
-    2% 35%, 0% 24%, 2% 13%
-  );
-  box-shadow: inset 0 0 35px #88652f;
-}
-
-/* MOLDURA REAL */
-
-.moldura {
+/* BORDAS ORNAMENTADAS */
+.pergaminho::before {
+  content: "❧";
   position: absolute;
-  inset: 15px;
-  border: 1px solid #9b7840;
-  pointer-events: none;
+  top: 8px;
+  left: 15px;
+  font-size: 35px;
+  color: #806039;
 }
 
-.moldura::before,
-.moldura::after {
-  content: "❦";
+.pergaminho::after {
+  content: "❧";
   position: absolute;
-  color: #8b6834;
-  font-size: 25px;
+  bottom: 8px;
+  right: 15px;
+  font-size: 35px;
+  color: #806039;
 }
 
-.moldura::before {
-  top: -13px;
-  left: -7px;
-}
-
-.moldura::after {
-  bottom: -13px;
-  right: -7px;
-  transform: rotate(180deg);
-}
-
-.canto {
-  position: absolute;
-  color: #9b7840;
-  font-size: 24px;
-  line-height: 1;
-}
-
-.canto.tl { top: 10px; left: 10px; }
-.canto.tr { top: 10px; right: 10px; transform: rotate(90deg); }
-.canto.bl { bottom: 10px; left: 10px; transform: rotate(-90deg); }
-.canto.br { bottom: 10px; right: 10px; transform: rotate(180deg); }
-
-.conteudo {
-  position: relative;
-  z-index: 1;
+.ornamento {
   text-align: center;
-  opacity: 0;
-  transform: translateY(10px);
+  color: #806039;
+  font-size: 23px;
+  letter-spacing: 8px;
+  margin: 8px 0 22px;
 }
 
-#convite.desenrolado .conteudo {
-  animation: textoAparecer 1.7s ease 1s forwards;
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(30px, 7vw, 54px);
+  font-weight: 600;
+  text-align: center;
+  color: #382414;
+  margin: 0;
 }
 
-@keyframes textoAparecer {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.linha-decorativa {
-  width: 65%;
-  height: 1px;
-  margin: 0 auto 22px;
-  background: linear-gradient(to right, transparent, #8b6834, transparent);
-}
-
-.abertura {
-  margin: 0 auto 18px;
-  font-family: "Allura", cursive;
-  font-size: clamp(27px, 6vw, 34px);
-  line-height: 1.25;
-  color: #4a2c17;
+.subtitulo {
+  text-align: center;
+  font-family: 'Allura', cursive;
+  font-size: clamp(25px, 5vw, 35px);
+  margin: 8px 0 25px;
 }
 
 .mensagem {
-  margin: 0 auto;
-  max-width: 440px;
-  font-family: "Allura", cursive;
-  font-size: clamp(25px, 5.5vw, 30px);
+  max-width: 760px;
+  margin: auto;
+  text-align: center;
+  font-family: 'Allura', cursive;
+  font-size: clamp(24px, 4vw, 34px);
   line-height: 1.35;
-  color: #382516;
+  color: #382414;
 }
 
 .mensagem p {
-  margin: 0 0 16px;
-}
-
-.assinatura {
-  margin-top: 22px;
-  font-family: "Allura", cursive;
-  font-size: 29px;
-  line-height: 1.25;
-}
-
-.assinatura strong {
-  display: block;
-  font-family: "Allura", cursive;
-  font-size: 35px;
-  font-weight: 400;
+  margin: 17px 0;
 }
 
 .detalhes {
-  margin: 27px auto 0;
-  padding-top: 18px;
-  border-top: 1px solid #9b7840;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  font-family: "Cinzel", serif;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #382516;
+  margin: 32px auto 20px;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(13px, 2.5vw, 17px);
+  line-height: 2.2;
+  color: #382414;
 }
 
-.detalhes strong {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #79572d;
+.assinatura {
+  margin-top: 30px;
+  text-align: center;
+  font-family: 'Allura', cursive;
+  font-size: clamp(27px, 5vw, 38px);
+  line-height: 1.2;
 }
 
 .confirmar {
-  margin-top: 25px;
-  padding: 13px 20px;
-  border: 1px solid #9b7840;
-  background: #241710;
-  color: #f0dfb0;
-  font-family: "Cinzel", serif;
-  font-size: 11px;
-  letter-spacing: 1.5px;
+  display: block;
+  width: fit-content;
+  margin: 28px auto 0;
+  padding: 13px 25px;
+  background: #382414;
+  color: #f4e4b9;
+  border: 1px solid #806039;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .confirmar:hover {
-  background: #49301c;
+  background: #5b3b22;
 }
 
-/* ANIMAÇÃO DE ABERTURA */
-
-#convite.desenrolando .folha {
-  animation: abrirPapel 1.8s ease forwards;
+/* ROLOS DO PERGAMINHO */
+.rolinho {
+  height: 13px;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    #9c7848,
+    #e2c58e,
+    #9c7848
+  );
+  border-radius: 50%;
+  box-shadow: 0 2px 5px #4c351d66;
 }
 
-@keyframes abrirPapel {
-  0% {
-    clip-path: inset(49% 0 49% 0);
-    transform: scaleY(.05);
-  }
-  60% {
-    clip-path: inset(12% 0 12% 0);
-    transform: scaleY(.75);
-  }
-  100% {
-    clip-path: inset(0 0 0 0);
-    transform: scaleY(1);
-  }
-}
-
-@media (max-width: 420px) {
+@media (max-width: 500px) {
   #convite {
-    padding-left: 9px;
-    padding-right: 9px;
+    padding: 20px 9px 35px;
   }
 
-  .folha {
-    padding: 30px 21px;
+  .pergaminho {
+    padding: 48px 7% 50px;
+    border-width: 6px;
   }
 
-  .moldura {
-    inset: 12px;
-  }
-
-  .detalhes {
-    font-size: 11px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
+  .mensagem p {
+    margin: 13px 0;
   }
 }
 </style>
@@ -401,114 +252,68 @@ button {
 <body>
 
 <section id="entrada">
-  <h1>XV da Mary</h1>
-
   <div class="envelope" id="envelope">
-    <div class="corpo-envelope"></div>
+    <div class="corpo"></div>
     <div class="aba"></div>
-    <button class="lacre" id="lacre" aria-label="Abrir convite">
-      ✦
-    </button>
+    <button class="lacre" id="lacre" aria-label="Abrir convite"></button>
   </div>
-
-  <p class="instrucao">TOQUE NO LACRE PARA ABRIR</p>
 </section>
 
 <section id="convite">
   <div class="pergaminho">
-    <div class="rolinho topo"></div>
+    <div class="rolinho"></div>
 
-    <div class="folha">
-      <div class="moldura"></div>
-      <span class="canto tl">❧</span>
-      <span class="canto tr">❧</span>
-      <span class="canto bl">❧</span>
-      <span class="canto br">❧</span>
+    <div class="ornamento">❧ ✦ ❧</div>
 
-      <div class="conteudo">
-        <div class="linha-decorativa"></div>
+    <h1>XV da Mary</h1>
+    <div class="subtitulo">Uma noite de mistério e elegância</div>
 
-        <h2 class="abertura">
-          Prepare-se para uma noite onde o mistério encontra a elegância…
-        </h2>
+    <div class="mensagem">
+      <p>Prepare-se para uma noite onde o mistério encontra a elegância…</p>
 
-        <div class="mensagem">
-          <p>
-            Por trás de cada máscara existe um segredo, e por trás desta
-            noite existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.
-          </p>
+      <p>Por trás de cada máscara existe um segredo, e por trás desta noite existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.</p>
 
-          <p>
-            Você está convidado(a) para viver uma noite mágica, cheia de
-            encanto, surpresas e momentos inesquecíveis.
-          </p>
+      <p>Você está convidado(a) para viver uma noite mágica, cheia de encanto, surpresas e momentos inesquecíveis.</p>
 
-          <p>
-            As máscaras estão prontas. E você, está preparado(a) para essa noite?
-          </p>
-        </div>
-
-        <div class="assinatura">
-          Com carinho,
-          <strong>A debutante</strong>
-        </div>
-
-        <div class="detalhes">
-          <div>
-            <strong>DATA</strong>
-            A DEFINIR
-          </div>
-
-          <div>
-            <strong>HORÁRIO</strong>
-            A DEFINIR
-          </div>
-
-          <div>
-            <strong>LOCAL</strong>
-            A DEFINIR
-          </div>
-        </div>
-
-        <button class="confirmar" id="confirmar">
-          CONFIRMAR PRESENÇA
-        </button>
-      </div>
+      <p>As máscaras estão prontas. E você, está preparado(a) para essa noite?</p>
     </div>
 
-    <div class="rolinho baixo"></div>
+    <div class="detalhes">
+      <div>DATA: A DEFINIR</div>
+      <div>HORÁRIO: A DEFINIR</div>
+      <div>LOCAL: A DEFINIR</div>
+    </div>
+
+    <div class="assinatura">
+      Um beijo!<br>
+      Estou esperando você!<br>
+      Assinado, debutante.
+    </div>
+
+    <a class="confirmar"
+       href="https://wa.me/?text=Ol%C3%A1!%20Quero%20confirmar%20minha%20presen%C3%A7a%20no%20XV%20da%20Mary!">
+      Confirmar presença
+    </a>
+
+    <div class="ornamento">❧ ✦ ❧</div>
+    <div class="rolinho"></div>
   </div>
 </section>
 
 <script>
-const lacre = document.getElementById("lacre");
-const envelope = document.getElementById("envelope");
-const entrada = document.getElementById("entrada");
-const convite = document.getElementById("convite");
-const confirmar = document.getElementById("confirmar");
+const lacre = document.getElementById('lacre');
+const envelope = document.getElementById('envelope');
+const entrada = document.getElementById('entrada');
+const convite = document.getElementById('convite');
 
-lacre.addEventListener("click", () => {
-  lacre.disabled = true;
-  envelope.classList.add("aberto");
+lacre.addEventListener('click', function() {
+  envelope.classList.add('aberto');
 
-  setTimeout(() => {
-    entrada.style.opacity = "0";
-    entrada.style.transform = "scale(.96)";
-  }, 650);
-
-  setTimeout(() => {
-    entrada.style.display = "none";
-    convite.classList.add("visivel");
-
-    requestAnimationFrame(() => {
-      convite.classList.add("desenrolando");
-      convite.classList.add("desenrolado");
-    });
-  }, 1500);
-});
-
-confirmar.addEventListener("click", () => {
-  alert("A confirmação de presença será disponibilizada em breve!");
+  setTimeout(function() {
+    entrada.style.display = 'none';
+    convite.classList.add('visivel');
+    window.scrollTo(0, 0);
+  }, 1300);
 });
 </script>
 
