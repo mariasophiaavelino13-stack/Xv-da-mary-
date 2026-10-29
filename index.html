@@ -1,503 +1,515 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XV da Mary — Baile de Máscaras</title>
+<title>XV da Mary</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --gold: #c6a15b;
-  --dark-gold: #856329;
-  --wine: #651326;
-  --paper: #eee0bd;
-  --ink: #281b13;
+* {
+  box-sizing: border-box;
 }
 
-* { box-sizing: border-box; }
+:root {
+  --ouro: #c5a66b;
+  --ouro-claro: #ead7a4;
+  --vinho: #641b2c;
+  --papel: #e8d4a5;
+  --tinta: #382516;
+}
+
+html {
+  min-height: 100%;
+  background: #000;
+}
 
 body {
   margin: 0;
   min-height: 100vh;
-  padding: 18px 12px 40px;
-  color: #f4dfad;
-  background: radial-gradient(ellipse at center, #241b16, #080707 72%);
-  font-family: "Cormorant Garamond", serif;
-  text-align: center;
+  background: #000;
+  color: var(--ouro-claro);
+  font-family: "Cinzel", serif;
+  overflow-x: hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 7px;
-  border: 1px solid #98783e;
-  pointer-events: none;
-  z-index: 20;
+button {
+  font-family: "Cinzel", serif;
+  cursor: pointer;
 }
 
-/* ABERTURA PRETA */
+/* ENTRADA PRETA */
 
-#intro {
-  min-height: 90vh;
+#entrada {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 22px;
+  padding: 24px;
+  background: #000;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
-#intro h1 {
-  font-family: "Cinzel", serif;
-  font-size: clamp(28px, 7vw, 40px);
-  letter-spacing: 4px;
-  margin: 0;
-}
-
-#intro p {
-  font-size: 19px;
-  margin: 0;
-  color: #d8c18c;
+#entrada h1 {
+  margin: 0 0 35px;
+  color: var(--ouro-claro);
+  font-size: clamp(25px, 6vw, 38px);
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-align: center;
 }
 
 .envelope {
   position: relative;
-  width: min(340px, 88vw);
-  height: 210px;
-  background: #030303;
-  border: 1px solid #4b3b23;
-  box-shadow: 0 15px 35px #000;
-  perspective: 900px;
-  overflow: hidden;
-}
-
-/* Triângulo da aba */
-
-.flap {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  transform-origin: top center;
-  transition: transform 1s ease;
-  background: #030303;
-  clip-path: polygon(0 0, 100% 0, 50% 57%);
+  width: min(82vw, 360px);
+  height: 220px;
+  background: #000;
   border: none;
+  perspective: 900px;
 }
 
-.flap::after {
-  content: "";
+.corpo-envelope {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #292018, #030303 45%, #292018);
-  clip-path: polygon(0 0, 100% 0, 50% 57%);
+  background: #000;
 }
 
-.envelope.open .flap {
+.aba {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 130px;
+  background: #000;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 1.2s ease;
+  z-index: 3;
+}
+
+.envelope.aberto .aba {
   transform: rotateX(180deg);
 }
 
-/* Lacre */
-
-.seal {
+.lacre {
   position: absolute;
   z-index: 5;
-  top: 48%;
+  top: 50%;
   left: 50%;
+  width: 72px;
+  height: 72px;
   transform: translate(-50%, -50%);
-  width: 65px;
-  height: 65px;
   border-radius: 50%;
-  border: 2px solid #d7b56b;
-  background: radial-gradient(circle at 35% 25%, #26201a, #080707 70%);
-  color: #e4c77e;
-  font-family: "Cinzel", serif;
-  font-size: 17px;
-  box-shadow: 0 0 0 4px #17120d, 0 0 16px #000;
-  cursor: pointer;
-  transition: opacity .4s, transform .4s;
+  border: 2px solid var(--ouro);
+  background:
+    radial-gradient(circle at 35% 30%, #8e3547, #641b2c 65%, #351019);
+  color: var(--ouro-claro);
+  box-shadow: 0 0 22px #000;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .5s ease, transform .5s ease;
 }
 
-.envelope.open .seal {
+.lacre:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.envelope.aberto .lacre {
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, -50%) scale(.6);
 }
 
-.tap {
-  font-family: "Cinzel", serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #c9ad70;
+.instrucao {
+  margin-top: 28px;
+  color: #b9a579;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-align: center;
 }
 
 /* CONVITE */
 
-#invitation {
+#convite {
   display: none;
-  max-width: 560px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-#invitation.visible { display: block; }
-
-.scroll {
-  position: relative;
-  padding: 12px 8px;
-  background: linear-gradient(90deg, #856329, #f2d995 12%, #c6a15b 50%, #f2d995 88%, #856329);
-  box-shadow: 0 15px 35px #000b;
-}
-
-.roller {
-  position: relative;
-  height: 25px;
-  z-index: 2;
-  border: 2px solid #806027;
-  border-radius: 50%;
-  background: linear-gradient(#f5dfa4, #a87d35 40%, #f4dfa0 75%, #8b6327);
-  box-shadow: 0 3px 5px #0007;
-}
-
-.roller::after {
-  content: "";
-  position: absolute;
-  left: 4%;
-  right: 4%;
-  top: 5px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid #b18a42;
-  background: linear-gradient(#92692d, #f4d98d, #916628);
-}
-
-.paper {
-  position: relative;
-  overflow: hidden;
-  padding: 28px 20px 25px;
-  margin: -1px 0;
-  color: var(--ink);
-  background:
-    radial-gradient(ellipse at 10% 5%, #fff9e4, transparent 48%),
-    radial-gradient(ellipse at 90% 95%, #c2a16a55, transparent 45%),
-    linear-gradient(100deg, #e5d1a5, #f5e8c8 45%, #e7d4aa);
-  border-left: 2px solid #9b7739;
-  border-right: 2px solid #9b7739;
-}
-
-/* Moldura ornamentada */
-
-.frame {
-  position: absolute;
-  inset: 9px;
-  border: 1px solid #a18143;
-  pointer-events: none;
-}
-
-.frame::before {
-  content: "❧";
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0 8px;
-  color: #9a7738;
-  background: #f0e0ba;
-  font-size: 20px;
-}
-
-.corner {
-  position: absolute;
-  width: 61px;
-  height: 61px;
-  color: #9a7738;
-  pointer-events: none;
-}
-
-.corner svg { width: 100%; height: 100%; }
-
-.c1 { top: 7px; left: 7px; }
-.c2 { top: 7px; right: 7px; transform: scaleX(-1); }
-.c3 { bottom: 7px; left: 7px; transform: scaleY(-1); }
-.c4 { bottom: 7px; right: 7px; transform: scale(-1); }
-
-.content {
+  min-height: 100vh;
+  padding: 35px 14px 55px;
+  align-items: center;
+  justify-content: center;
+  background: #000;
   opacity: 0;
-  transform: translateY(8px);
 }
 
-#invitation.unrolling .content {
-  animation: appear .8s ease forwards;
+#convite.visivel {
+  display: flex;
+  animation: aparecer 1.2s ease forwards;
 }
 
-#invitation.unrolling .content:nth-of-type(1) { animation-delay: .65s; }
-#invitation.unrolling .content:nth-of-type(2) { animation-delay: 1.05s; }
-#invitation.unrolling .content:nth-of-type(3) { animation-delay: 1.45s; }
-#invitation.unrolling .content:nth-of-type(4) { animation-delay: 1.85s; }
-#invitation.unrolling .content:nth-of-type(5) { animation-delay: 2.25s; }
-
-@keyframes appear {
-  to { opacity: 1; transform: translateY(0); }
+@keyframes aparecer {
+  to { opacity: 1; }
 }
 
-.royal-label {
-  font-family: "Cinzel", serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #80602e;
-  margin: 12px 0;
+/* PERGAMINHO */
+
+.pergaminho {
+  position: relative;
+  width: min(100%, 570px);
+  margin: 0 auto;
+  padding: 32px 0;
+  transform-origin: center;
 }
 
-.mask {
+.rolinho {
+  position: relative;
+  z-index: 2;
+  height: 24px;
+  width: 100%;
+  border: 1px solid #a78a50;
+  border-radius: 50%;
+  background:
+    linear-gradient(
+      to bottom,
+      #6e4a25 0%,
+      #d5b878 18%,
+      #f0dda9 42%,
+      #a37a3e 70%,
+      #5a3b20 100%
+    );
+  box-shadow: 0 3px 7px #000;
+}
+
+.rolinho.topo {
+  margin-bottom: -5px;
+}
+
+.rolinho.baixo {
+  margin-top: -5px;
+}
+
+.folha {
+  position: relative;
+  padding: 35px 25px 32px;
+  color: var(--tinta);
+  background:
+    radial-gradient(ellipse at 12% 10%, #f7e8bd 0%, transparent 38%),
+    radial-gradient(ellipse at 90% 85%, #b99559 0%, transparent 38%),
+    linear-gradient(105deg, #d6bd82, #f0dfb0 20%, #ead6a2 78%, #c6a46b);
+  clip-path: polygon(
+    2% 1%, 8% 0%, 15% 1%, 23% 0%, 31% 1%,
+    40% 0%, 49% 1%, 58% 0%, 67% 1%, 77% 0%,
+    87% 1%, 98% 0%, 99% 8%, 98% 18%, 100% 27%,
+    99% 38%, 100% 48%, 98% 59%, 100% 70%,
+    99% 82%, 100% 94%, 93% 99%, 83% 98%,
+    72% 100%, 61% 98%, 50% 100%, 39% 99%,
+    27% 100%, 16% 98%, 5% 100%, 1% 91%,
+    2% 80%, 0% 68%, 2% 57%, 0% 46%,
+    2% 35%, 0% 24%, 2% 13%
+  );
+  box-shadow: inset 0 0 35px #88652f;
+}
+
+/* MOLDURA REAL */
+
+.moldura {
+  position: absolute;
+  inset: 15px;
+  border: 1px solid #9b7840;
+  pointer-events: none;
+}
+
+.moldura::before,
+.moldura::after {
+  content: "❦";
+  position: absolute;
+  color: #8b6834;
+  font-size: 25px;
+}
+
+.moldura::before {
+  top: -13px;
+  left: -7px;
+}
+
+.moldura::after {
+  bottom: -13px;
+  right: -7px;
+  transform: rotate(180deg);
+}
+
+.canto {
+  position: absolute;
+  color: #9b7840;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.canto.tl { top: 10px; left: 10px; }
+.canto.tr { top: 10px; right: 10px; transform: rotate(90deg); }
+.canto.bl { bottom: 10px; left: 10px; transform: rotate(-90deg); }
+.canto.br { bottom: 10px; right: 10px; transform: rotate(180deg); }
+
+.conteudo {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+#convite.desenrolado .conteudo {
+  animation: textoAparecer 1.7s ease 1s forwards;
+}
+
+@keyframes textoAparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.linha-decorativa {
+  width: 65%;
+  height: 1px;
+  margin: 0 auto 22px;
+  background: linear-gradient(to right, transparent, #8b6834, transparent);
+}
+
+.abertura {
+  margin: 0 auto 18px;
+  font-family: "Allura", cursive;
+  font-size: clamp(27px, 6vw, 34px);
+  line-height: 1.25;
+  color: #4a2c17;
+}
+
+.mensagem {
+  margin: 0 auto;
+  max-width: 440px;
+  font-family: "Allura", cursive;
+  font-size: clamp(25px, 5.5vw, 30px);
+  line-height: 1.35;
+  color: #382516;
+}
+
+.mensagem p {
+  margin: 0 0 16px;
+}
+
+.assinatura {
+  margin-top: 22px;
+  font-family: "Allura", cursive;
+  font-size: 29px;
+  line-height: 1.25;
+}
+
+.assinatura strong {
   display: block;
-  width: 145px;
-  max-width: 48%;
-  height: auto;
-  margin: 12px auto;
-  filter: drop-shadow(2px 4px 3px #35220b66);
+  font-family: "Allura", cursive;
+  font-size: 35px;
+  font-weight: 400;
 }
 
-.ornament {
-  color: #98733a;
-  letter-spacing: 4px;
-  margin: 12px 0;
-  font-size: 17px;
-}
-
-h2 {
-  font-family: "Cinzel", serif;
-  color: #681729;
-  font-size: clamp(29px, 7vw, 39px);
-  font-weight: 500;
-  letter-spacing: 2px;
-  margin: 13px 0;
-}
-
-.subtitle {
-  font-family: "Cinzel", serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #775927;
-}
-
-.message {
-  max-width: 420px;
-  margin: 18px auto;
-  font-size: 19px;
-  line-height: 1.48;
-}
-
-.opening {
-  font-size: 21px;
-  font-style: italic;
-  margin: 20px 0;
-}
-
-.details {
-  margin: 22px auto 14px;
-  padding: 13px 5px;
-  border-top: 1px solid #b99a60;
-  border-bottom: 1px solid #b99a60;
+.detalhes {
+  margin: 27px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid #9b7840;
   display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
-  font-size: 19px;
-}
-
-.details strong {
-  display: block;
   font-family: "Cinzel", serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #711b2b;
-  margin-bottom: 4px;
-}
-
-.details a { color: #382516; }
-
-.confirm {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 12px 15px;
-  background: #18100c;
-  border: 1px solid #b18b4b;
-  color: #f0dba7;
-  text-decoration: none;
-  font-family: "Cinzel", serif;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 1px;
+  color: #382516;
 }
 
-.signature {
-  color: #681729;
-  font-size: 21px;
-  font-style: italic;
-  line-height: 1.5;
-  margin-top: 24px;
-}
-
-.signature strong {
+.detalhes strong {
   display: block;
-  font-family: "Cinzel", serif;
-  font-style: normal;
-  font-size: 13px;
+  margin-bottom: 4px;
+  font-size: 10px;
   letter-spacing: 2px;
+  color: #79572d;
 }
 
-@media(max-width: 380px) {
-  .paper { padding: 26px 14px 22px; }
-  .message { font-size: 18px; }
-  .opening { font-size: 19px; }
+.confirmar {
+  margin-top: 25px;
+  padding: 13px 20px;
+  border: 1px solid #9b7840;
+  background: #241710;
+  color: #f0dfb0;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.confirmar:hover {
+  background: #49301c;
+}
+
+/* ANIMAÇÃO DE ABERTURA */
+
+#convite.desenrolando .folha {
+  animation: abrirPapel 1.8s ease forwards;
+}
+
+@keyframes abrirPapel {
+  0% {
+    clip-path: inset(49% 0 49% 0);
+    transform: scaleY(.05);
+  }
+  60% {
+    clip-path: inset(12% 0 12% 0);
+    transform: scaleY(.75);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 420px) {
+  #convite {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  .folha {
+    padding: 30px 21px;
+  }
+
+  .moldura {
+    inset: 12px;
+  }
+
+  .detalhes {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<section id="intro">
+<section id="entrada">
   <h1>XV da Mary</h1>
-  <p>Baile de Máscaras</p>
 
   <div class="envelope" id="envelope">
-    <div class="flap"></div>
-    <button class="seal" onclick="openInvitation()" aria-label="Abrir convite">XV</button>
+    <div class="corpo-envelope"></div>
+    <div class="aba"></div>
+    <button class="lacre" id="lacre" aria-label="Abrir convite">
+      ✦
+    </button>
   </div>
 
-  <div class="tap">TOQUE NO LACRE PARA ABRIR</div>
+  <p class="instrucao">TOQUE NO LACRE PARA ABRIR</p>
 </section>
 
-<main id="invitation">
-  <div class="scroll" id="scroll">
-    <div class="roller"></div>
+<section id="convite">
+  <div class="pergaminho">
+    <div class="rolinho topo"></div>
 
-    <article class="paper">
-      <div class="frame"></div>
+    <div class="folha">
+      <div class="moldura"></div>
+      <span class="canto tl">❧</span>
+      <span class="canto tr">❧</span>
+      <span class="canto bl">❧</span>
+      <span class="canto br">❧</span>
 
-      <svg class="corner c1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 95V38Q5 5 38 5H95 M7 65Q30 65 30 42Q30 27 44 27Q64 27 64 6 M7 80Q42 80 42 48Q42 37 53 37Q76 37 76 6"/>
-        <path d="M12 89Q24 69 44 69Q67 69 67 46Q67 28 90 25"/>
-        <path d="M18 15Q34 16 35 32Q20 33 18 15Z M49 14Q61 17 57 29Q46 28 49 14Z"/>
-      </svg>
+      <div class="conteudo">
+        <div class="linha-decorativa"></div>
 
-      <svg class="corner c2" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 95V38Q5 5 38 5H95 M7 65Q30 65 30 42Q30 27 44 27Q64 27 64 6 M7 80Q42 80 42 48Q42 37 53 37Q76 37 76 6"/>
-        <path d="M12 89Q24 69 44 69Q67 69 67 46Q67 28 90 25"/>
-        <path d="M18 15Q34 16 35 32Q20 33 18 15Z M49 14Q61 17 57 29Q46 28 49 14Z"/>
-      </svg>
+        <h2 class="abertura">
+          Prepare-se para uma noite onde o mistério encontra a elegância…
+        </h2>
 
-      <svg class="corner c3" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 95V38Q5 5 38 5H95 M7 65Q30 65 30 42Q30 27 44 27Q64 27 64 6 M7 80Q42 80 42 48Q42 37 53 37Q76 37 76 6"/>
-        <path d="M12 89Q24 69 44 69Q67 69 67 46Q67 28 90 25"/>
-      </svg>
+        <div class="mensagem">
+          <p>
+            Por trás de cada máscara existe um segredo, e por trás desta
+            noite existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.
+          </p>
 
-      <svg class="corner c4" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 95V38Q5 5 38 5H95 M7 65Q30 65 30 42Q30 27 44 27Q64 27 64 6 M7 80Q42 80 42 48Q42 37 53 37Q76 37 76 6"/>
-        <path d="M12 89Q24 69 44 69Q67 69 67 46Q67 28 90 25"/>
-      </svg>
+          <p>
+            Você está convidado(a) para viver uma noite mágica, cheia de
+            encanto, surpresas e momentos inesquecíveis.
+          </p>
 
-      <div class="content">
-        <div class="royal-label">UMA NOITE DE MISTÉRIO E ELEGÂNCIA</div>
-
-        <svg class="mask" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Máscara veneziana dourada">
-          <defs>
-            <linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
-              <stop stop-color="#fff1ba"/>
-              <stop offset=".35" stop-color="#c59a45"/>
-              <stop offset=".7" stop-color="#f7df98"/>
-              <stop offset="1" stop-color="#8a5b1b"/>
-            </linearGradient>
-            <linearGradient id="mb" x1="0" y1="0" x2="0" y2="1">
-              <stop stop-color="#5b1021"/>
-              <stop offset="1" stop-color="#19070d"/>
-            </linearGradient>
-          </defs>
-          <path d="M19 47Q44 15 91 30Q122 40 150 20Q178 40 209 30Q256 15 281 47Q265 67 244 78Q224 101 193 93Q171 87 158 65L150 57L142 65Q129 87 107 93Q76 101 56 78Q35 67 19 47Z" fill="url(#mg)" stroke="#80571d" stroke-width="3"/>
-          <path d="M25 46Q52 31 91 39Q118 45 139 59Q116 70 91 61Q66 53 47 70Q32 60 25 46Z" fill="url(#mb)" stroke="#f4d783" stroke-width="2"/>
-          <path d="M275 46Q248 31 209 39Q182 45 161 59Q184 70 209 61Q234 53 253 70Q268 60 275 46Z" fill="url(#mb)" stroke="#f4d783" stroke-width="2"/>
-          <path d="M150 20Q133 39 150 57Q167 39 150 20Z" fill="#fff0b0" stroke="#94691f" stroke-width="2"/>
-          <path d="M19 47Q-1 30 10 10Q31 11 46 34M281 47Q301 30 290 10Q269 11 254 34" fill="url(#mg)" stroke="#80571d" stroke-width="2"/>
-          <path d="M56 78Q44 105 29 134M244 78Q256 105 271 134" fill="none" stroke="url(#mg)" stroke-width="5" stroke-linecap="round"/>
-          <g fill="#fff0b0" stroke="#956a24" stroke-width="1.5">
-            <circle cx="38" cy="47" r="4"/><circle cx="63" cy="57" r="3"/>
-            <circle cx="262" cy="47" r="4"/><circle cx="237" cy="57" r="3"/>
-            <circle cx="150" cy="13" r="4"/>
-          </g>
-          <path d="M99 32Q115 13 131 29L121 37M201 32Q185 13 169 29L179 37" fill="none" stroke="#f9e8ae" stroke-width="3"/>
-          <path d="M12 24Q25 21 33 34M288 24Q275 21 267 34" fill="none" stroke="#f9e8ae" stroke-width="2"/>
-        </svg>
-
-        <div class="subtitle">VOCÊ É NOSSO CONVIDADO ESPECIAL</div>
-        <h2>XV da Mary</h2>
-        <div class="ornament">❧ ─── ♛ ─── ❧</div>
-      </div>
-
-      <div class="content">
-        <p class="opening">Prepare-se para uma noite onde o mistério encontra a elegância…</p>
-      </div>
-
-      <div class="content">
-        <p class="message">
-          Por trás de cada máscara existe um segredo, e por trás desta noite existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.
-          <br><br>
-          Você está convidado(a) para viver uma noite mágica, cheia de encanto, surpresas e momentos inesquecíveis.
-          <br><br>
-          As máscaras estão prontas. E você, está preparado(a) para essa noite?
-        </p>
-        <div class="ornament">✧ ❧ ✧</div>
-      </div>
-
-      <div class="content">
-        <div class="details">
-          <div><strong>DATA</strong>A DEFINIR</div>
-          <div><strong>HORÁRIO</strong>A DEFINIR</div>
-          <div><strong>LOCAL</strong><a href="https://maps.google.com/" target="_blank" rel="noopener">Ver localização</a></div>
+          <p>
+            As máscaras estão prontas. E você, está preparado(a) para essa noite?
+          </p>
         </div>
-        <a class="confirm" href="#" onclick="return false">CONFIRMAR PRESENÇA</a>
-      </div>
 
-      <div class="content">
-        <div class="signature">
+        <div class="assinatura">
           Com carinho,
-          <strong>A debutante. 🖤✨</strong>
+          <strong>A debutante</strong>
         </div>
-        <div class="ornament">❧ ✧ ♛ ✧ ❧</div>
-      </div>
-    </article>
 
-    <div class="roller"></div>
+        <div class="detalhes">
+          <div>
+            <strong>DATA</strong>
+            A DEFINIR
+          </div>
+
+          <div>
+            <strong>HORÁRIO</strong>
+            A DEFINIR
+          </div>
+
+          <div>
+            <strong>LOCAL</strong>
+            A DEFINIR
+          </div>
+        </div>
+
+        <button class="confirmar" id="confirmar">
+          CONFIRMAR PRESENÇA
+        </button>
+      </div>
+    </div>
+
+    <div class="rolinho baixo"></div>
   </div>
-</main>
+</section>
 
 <script>
-let opened = false;
+const lacre = document.getElementById("lacre");
+const envelope = document.getElementById("envelope");
+const entrada = document.getElementById("entrada");
+const convite = document.getElementById("convite");
+const confirmar = document.getElementById("confirmar");
 
-function openInvitation() {
-  if (opened) return;
-  opened = true;
-
-  const envelope = document.getElementById("envelope");
-  const intro = document.getElementById("intro");
-  const invitation = document.getElementById("invitation");
-  const scroll = document.getElementById("scroll");
-
-  envelope.classList.add("open");
+lacre.addEventListener("click", () => {
+  lacre.disabled = true;
+  envelope.classList.add("aberto");
 
   setTimeout(() => {
-    intro.style.display = "none";
-    invitation.style.display = "block";
-    invitation.classList.add("visible");
+    entrada.style.opacity = "0";
+    entrada.style.transform = "scale(.96)";
+  }, 650);
 
-    scroll.animate([
-      { clipPath: "inset(0 0 50% 0)", opacity: 0.5 },
-      { clipPath: "inset(0 0 0 0)", opacity: 1 }
-    ], {
-      duration: 1800,
-      easing: "ease-in-out",
-      fill: "forwards"
+  setTimeout(() => {
+    entrada.style.display = "none";
+    convite.classList.add("visivel");
+
+    requestAnimationFrame(() => {
+      convite.classList.add("desenrolando");
+      convite.classList.add("desenrolado");
     });
+  }, 1500);
+});
 
-    invitation.classList.add("unrolling");
-  }, 850);
-}
+confirmar.addEventListener("click", () => {
+  alert("A confirmação de presença será disponibilizada em breve!");
+});
 </script>
 
 </body>
