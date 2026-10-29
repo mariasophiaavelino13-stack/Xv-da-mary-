@@ -1,147 +1,504 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XV da Mary — Baile de Máscaras</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-:root{--gold:#c7a052;--light:#f7e8b8;--wine:#650e20;--ink:#291a13}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;padding:24px 12px 40px;background:radial-gradient(ellipse,#38231d,#100909 65%,#020202);font-family:"Cormorant Garamond",serif;color:var(--light);text-align:center}
-body:before{content:"";position:fixed;inset:7px;border:1px solid var(--gold);pointer-events:none;z-index:10}
-h1,h2,button{font-family:"Cinzel",serif}
-.intro{min-height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:18px}
-.intro h1{font-size:clamp(30px,8vw,47px);letter-spacing:4px;margin:0}
-.intro p{font-size:21px;color:var(--light)}
-.envelope{position:relative;width:min(330px,88vw);height:220px;display:grid;place-items:center;background:linear-gradient(140deg,#42101a,#100809 70%);border:2px solid var(--gold);box-shadow:0 0 30px #000,inset 0 0 20px #b38b4033;overflow:hidden}
-.envelope:before,.envelope:after{content:"";position:absolute;width:220px;height:220px;border:1px solid var(--gold);transform:rotate(45deg);opacity:.6}
-.envelope:before{top:-165px}
-.envelope:after{bottom:-165px}
-.seal{position:relative;z-index:2;width:82px;height:82px;border-radius:50%;border:2px solid #f8dfa0;background:radial-gradient(circle at 35% 25%,#bd3545,#650719 75%);color:#ffe7a3;box-shadow:inset 0 0 0 5px #8d2430,0 0 20px #000;font-size:22px;cursor:pointer}
-.tap{font-size:16px;letter-spacing:2px;color:#e5ce98}
-#invitation{display:none;width:100%;max-width:560px;margin:auto}
-#invitation.visible{display:block}
-.scroll{position:relative;padding:12px 10px;background:linear-gradient(90deg,#6e4c1e,#efd38b 10%,#b38b42 50%,#f3d993 90%,#68471d);transform-origin:top;transform:scaleY(0);opacity:0;max-height:0;overflow:hidden;box-shadow:0 15px 40px #000c}
-#invitation.unrolling .scroll{animation:unroll 2.3s cubic-bezier(.2,.75,.25,1) forwards}
-@keyframes unroll{0%{transform:scaleY(.02);opacity:0;max-height:0}20%{opacity:1}100%{transform:scaleY(1);opacity:1;max-height:2000px}}
-.roll{height:30px;position:relative;z-index:2;border-radius:50%;border:2px solid #89601f;background:linear-gradient(#f5dfa0,#a97a2e 35%,#f6e3a4 70%,#93651e);box-shadow:0 3px 7px #28160999}
-.roll:after{content:"";position:absolute;left:5%;right:5%;top:7px;height:11px;border-radius:50%;background:linear-gradient(#9b712c,#e8c878,#8b6125);border:1px solid #d9b665}
-.paper{position:relative;overflow:hidden;margin-top:-2px;padding:32px 23px 30px;color:var(--ink);border:2px solid #94702f;background:radial-gradient(ellipse at 15% 10%,#fff7dfcc,transparent 45%),radial-gradient(ellipse at 90% 85%,#b38b4233,transparent 40%),repeating-linear-gradient(0deg,#e5d0a2,#f0e1bc 4px,#e6d2a6 8px)}
-.paper:before{content:"";position:absolute;inset:9px;border:1px solid #9d7b3d;pointer-events:none}
-.corner{position:absolute;width:76px;height:76px;color:#9a742f;z-index:1}
-.corner svg{width:100%;height:100%}
-.tl{top:9px;left:9px}.tr{top:9px;right:9px;transform:scaleX(-1)}.bl{bottom:9px;left:9px;transform:scaleY(-1)}.br{bottom:9px;right:9px;transform:scale(-1)}
-.top-label{font-family:"Cinzel",serif;font-size:10px;letter-spacing:3px;color:#785723;margin:12px 0}
-.mask{display:block;width:155px;height:auto;max-width:48%;margin:13px auto 16px;filter:drop-shadow(2px 4px 3px #35220b77)}
-.fleur{color:#98712e;letter-spacing:5px;font-size:18px;margin:9px 0}
-.paper h2{font-size:clamp(30px,8vw,44px);line-height:1.2;color:#6a1424;margin:13px 0}
-.subtitle{font-family:"Cinzel",serif;font-size:11px;letter-spacing:3px;color:#785723}
-.opening{font-size:22px;font-style:italic;margin:20px 0 16px}
-.message{font-size:20px;line-height:1.48;max-width:420px;margin:auto}
-.details{margin:24px auto 14px;padding:15px 7px;border-top:1px solid #b3965d;border-bottom:1px solid #b3965d;display:grid;gap:12px;font-size:20px}
-.details strong{display:block;font-family:"Cinzel",serif;font-size:11px;letter-spacing:2px;color:#741829;margin-bottom:3px}
-.details a{color:#342416}
-.confirm{display:inline-block;margin-top:17px;padding:13px 16px;border:1px solid #e3c57a;background:linear-gradient(135deg,#851c2c,#410610);color:#fff0c7;text-decoration:none;font-family:"Cinzel",serif;font-size:11px;letter-spacing:1px}
-.signature{font-size:23px;font-style:italic;line-height:1.5;margin-top:25px;color:#5f1422}
-.signature strong{display:block;font-family:"Cinzel",serif;font-size:14px;letter-spacing:2px;font-style:normal}
-.bottom-ornament{font-size:22px;color:#9b742e;margin:14px 0 5px}
-@media(max-width:380px){.paper{padding:30px 15px}.message{font-size:18px}.opening{font-size:20px}}
+:root {
+  --gold: #c6a15b;
+  --dark-gold: #856329;
+  --wine: #651326;
+  --paper: #eee0bd;
+  --ink: #281b13;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 18px 12px 40px;
+  color: #f4dfad;
+  background: radial-gradient(ellipse at center, #241b16, #080707 72%);
+  font-family: "Cormorant Garamond", serif;
+  text-align: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 7px;
+  border: 1px solid #98783e;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* ABERTURA PRETA */
+
+#intro {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+#intro h1 {
+  font-family: "Cinzel", serif;
+  font-size: clamp(28px, 7vw, 40px);
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+#intro p {
+  font-size: 19px;
+  margin: 0;
+  color: #d8c18c;
+}
+
+.envelope {
+  position: relative;
+  width: min(340px, 88vw);
+  height: 210px;
+  background: #030303;
+  border: 1px solid #4b3b23;
+  box-shadow: 0 15px 35px #000;
+  perspective: 900px;
+  overflow: hidden;
+}
+
+/* Triângulo da aba */
+
+.flap {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  transform-origin: top center;
+  transition: transform 1s ease;
+  background: #030303;
+  clip-path: polygon(0 0, 100% 0, 50% 57%);
+  border: none;
+}
+
+.flap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #292018, #030303 45%, #292018);
+  clip-path: polygon(0 0, 100% 0, 50% 57%);
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+/* Lacre */
+
+.seal {
+  position: absolute;
+  z-index: 5;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid #d7b56b;
+  background: radial-gradient(circle at 35% 25%, #26201a, #080707 70%);
+  color: #e4c77e;
+  font-family: "Cinzel", serif;
+  font-size: 17px;
+  box-shadow: 0 0 0 4px #17120d, 0 0 16px #000;
+  cursor: pointer;
+  transition: opacity .4s, transform .4s;
+}
+
+.envelope.open .seal {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.6);
+}
+
+.tap {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #c9ad70;
+}
+
+/* CONVITE */
+
+#invitation {
+  display: none;
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#invitation.visible { display: block; }
+
+.scroll {
+  position: relative;
+  padding: 12px 8px;
+  background: linear-gradient(90deg, #856329, #f2d995 12%, #c6a15b 50%, #f2d995 88%, #856329);
+  box-shadow: 0 15px 35px #000b;
+}
+
+.roller {
+  position: relative;
+  height: 25px;
+  z-index: 2;
+  border: 2px solid #806027;
+  border-radius: 50%;
+  background: linear-gradient(#f5dfa4, #a87d35 40%, #f4dfa0 75%, #8b6327);
+  box-shadow: 0 3px 5px #0007;
+}
+
+.roller::after {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 5px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #b18a42;
+  background: linear-gradient(#92692d, #f4d98d, #916628);
+}
+
+.paper {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 20px 25px;
+  margin: -1px 0;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 10% 5%, #fff9e4, transparent 48%),
+    radial-gradient(ellipse at 90% 95%, #c2a16a55, transparent 45%),
+    linear-gradient(100deg, #e5d1a5, #f5e8c8 45%, #e7d4aa);
+  border-left: 2px solid #9b7739;
+  border-right: 2px solid #9b7739;
+}
+
+/* Moldura ornamentada */
+
+.frame {
+  position: absolute;
+  inset: 9px;
+  border: 1px solid #a18143;
+  pointer-events: none;
+}
+
+.frame::before {
+  content: "❧";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 8px;
+  color: #9a7738;
+  background: #f0e0ba;
+  font-size: 20px;
+}
+
+.corner {
+  position: absolute;
+  width: 61px;
+  height: 61px;
+  color: #9a7738;
+  pointer-events: none;
+}
+
+.corner svg { width: 100%; height: 100%; }
+
+.c1 { top: 7px; left: 7px; }
+.c2 { top: 7px; right: 7px; transform: scaleX(-1); }
+.c3 { bottom: 7px; left: 7px; transform: scaleY(-1); }
+.c4 { bottom: 7px; right: 7px; transform: scale(-1); }
+
+.content {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+#invitation.unrolling .content {
+  animation: appear .8s ease forwards;
+}
+
+#invitation.unrolling .content:nth-of-type(1) { animation-delay: .65s; }
+#invitation.unrolling .content:nth-of-type(2) { animation-delay: 1.05s; }
+#invitation.unrolling .content:nth-of-type(3) { animation-delay: 1.45s; }
+#invitation.unrolling .content:nth-of-type(4) { animation-delay: 1.85s; }
+#invitation.unrolling .content:nth-of-type(5) { animation-delay: 2.25s; }
+
+@keyframes appear {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.royal-label {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #80602e;
+  margin: 12px 0;
+}
+
+.mask {
+  display: block;
+  width: 145px;
+  max-width: 48%;
+  height: auto;
+  margin: 12px auto;
+  filter: drop-shadow(2px 4px 3px #35220b66);
+}
+
+.ornament {
+  color: #98733a;
+  letter-spacing: 4px;
+  margin: 12px 0;
+  font-size: 17px;
+}
+
+h2 {
+  font-family: "Cinzel", serif;
+  color: #681729;
+  font-size: clamp(29px, 7vw, 39px);
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin: 13px 0;
+}
+
+.subtitle {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #775927;
+}
+
+.message {
+  max-width: 420px;
+  margin: 18px auto;
+  font-size: 19px;
+  line-height: 1.48;
+}
+
+.opening {
+  font-size: 21px;
+  font-style: italic;
+  margin: 20px 0;
+}
+
+.details {
+  margin: 22px auto 14px;
+  padding: 13px 5px;
+  border-top: 1px solid #b99a60;
+  border-bottom: 1px solid #b99a60;
+  display: grid;
+  gap: 12px;
+  font-size: 19px;
+}
+
+.details strong {
+  display: block;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #711b2b;
+  margin-bottom: 4px;
+}
+
+.details a { color: #382516; }
+
+.confirm {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 15px;
+  background: #18100c;
+  border: 1px solid #b18b4b;
+  color: #f0dba7;
+  text-decoration: none;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.signature {
+  color: #681729;
+  font-size: 21px;
+  font-style: italic;
+  line-height: 1.5;
+  margin-top: 24px;
+}
+
+.signature strong {
+  display: block;
+  font-family: "Cinzel", serif;
+  font-style: normal;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+@media(max-width: 380px) {
+  .paper { padding: 26px 14px 22px; }
+  .message { font-size: 18px; }
+  .opening { font-size: 19px; }
+}
 </style>
 </head>
+
 <body>
 
-<section class="intro" id="intro">
-<h1>XV da Mary</h1>
-<p>Um baile de mistério, encanto e realeza</p>
-<div class="envelope">
-<button class="seal" onclick="openInvitation()" aria-label="Abrir convite">XV</button>
-</div>
-<div class="tap">TOQUE NO LACRE PARA ABRIR</div>
+<section id="intro">
+  <h1>XV da Mary</h1>
+  <p>Baile de Máscaras</p>
+
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <button class="seal" onclick="openInvitation()" aria-label="Abrir convite">XV</button>
+  </div>
+
+  <div class="tap">TOQUE NO LACRE PARA ABRIR</div>
 </section>
 
 <main id="invitation">
-<div class="scroll">
-<div class="roll"></div>
-<article class="paper">
+  <div class="scroll" id="scroll">
+    <div class="roller"></div>
 
-<svg class="corner tl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
-<path d="M10 90Q20 70 40 70Q60 70 60 50Q60 40 75 40Q85 40 90 30"/>
-</svg>
-<svg class="corner tr" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
-</svg>
-<svg class="corner bl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
-</svg>
-<svg class="corner br" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-<path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
-</svg>
+    <article class="paper">
+      <div class="frame"></div>
 
-<svg class="mask" viewBox="0 0 300 145" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Máscara veneziana dourada ornamentada">
-<defs>
-<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff1b5"/><stop offset=".35" stop-color="#bd8b29"/><stop offset=".65" stop-color="#f8dc80"/><stop offset="1" stop-color="#805016"/></linearGradient>
-<linearGradient id="shadow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4b1020"/><stop offset="1" stop-color="#16080b"/></linearGradient>
-</defs>
-<path d="M18 43Q43 15 91 31Q119 39 150 23Q181 39 209 31Q257 15 282 43Q265 66 244 77Q225 99 194 94Q172 91 158 68L150 59L142 68Q128 91 106 94Q75 99 56 77Q35 66 18 43Z" fill="url(#gold)" stroke="#79511a" stroke-width="3"/>
-<path d="M22 43Q50 29 91 39Q117 46 139 61Q117 70 93 61Q65 51 46 70Q31 59 22 43Z" fill="url(#shadow)" stroke="#f1d17b" stroke-width="2"/>
-<path d="M278 43Q250 29 209 39Q183 46 161 61Q183 70 207 61Q235 51 254 70Q269 59 278 43Z" fill="url(#shadow)" stroke="#f1d17b" stroke-width="2"/>
-<path d="M150 23Q132 43 150 59Q168 43 150 23Z" fill="#fff0aa" stroke="#90651c" stroke-width="2"/>
-<path d="M43 33Q59 13 82 29L68 37M257 33Q241 13 218 29L232 37" fill="none" stroke="#fff0ad" stroke-width="3"/>
-<path d="M18 43Q-2 27 9 8Q32 11 45 34M282 43Q302 27 291 8Q268 11 255 34" fill="url(#gold)" stroke="#8e641c" stroke-width="2"/>
-<path d="M57 79Q45 107 31 133M243 79Q255 107 269 133" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round"/>
-<path d="M31 133l-8 -9m8 9l10 -3M269 133l8 -9m-8 9l-10 -3" fill="none" stroke="#d9b35e" stroke-width="3"/>
-<g fill="#f9e7a6" stroke="#9c7026" stroke-width="1.5">
-<circle cx="36" cy="47" r="4"/><circle cx="61" cy="57" r="3"/><circle cx="264" cy="47" r="4"/><circle cx="239" cy="57" r="3"/><circle cx="150" cy="15" r="4"/>
-</g>
-<path d="M105 34Q116 18 130 29L121 37M195 34Q184 18 170 29L179 37" fill="none" stroke="#f7e5a1" stroke-width="3"/>
-</svg>
+      <svg class="corner c1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 95V38Q5 5 38 5H95 M7 65Q30 65 30 42Q30 27 44 27Q64 27 64 6 M7 80Q42 80 42 48Q42 37 53 37Q76 37 76 6"/>
+        <path d="M12 89Q24 69 44 69Q67 69 67 46Q67 28 90 25"/>
+        <path d="M18 15Q34 16 35 32Q20 33 18 15Z M49 14Q61 17 57 29Q46 28 49 14Z"/>
+      </svg>
 
-<div class="top-label">UM CONVITE REAL PARA UMA NOITE ESPECIAL</div>
-<div class="fleur">✧ ❧ ♛ ❧ ✧</div>
-<div class="subtitle">VOCÊ É NOSSO CONVIDADO ESPECIAL</div>
-<h2>XV da Mary</h2>
-<div class="fleur">❧ ───── ✦ ───── ❧</div>
+      <svg class="corner c2" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 95V38Q5 5 38 5H95 M7 65Q30 65 30 42Q30 27 44 27Q64 27 64 6 M7 80Q42 80 42 48Q42 37 53 37Q76 37 76 6"/>
+        <path d="M12 89Q24 69 44 69Q67 69 67 46Q67 28 90 25"/>
+        <path d="M18 15Q34 16 35 32Q20 33 18 15Z M49 14Q61 17 57 29Q46 28 49 14Z"/>
+      </svg>
 
-<p class="opening">Prepare-se para uma noite onde o mistério encontra a elegância…</p>
+      <svg class="corner c3" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 95V38Q5 5 38 5H95 M7 65Q30 65 30 42Q30 27 44 27Q64 27 64 6 M7 80Q42 80 42 48Q42 37 53 37Q76 37 76 6"/>
+        <path d="M12 89Q24 69 44 69Q67 69 67 46Q67 28 90 25"/>
+      </svg>
 
-<p class="message">
-Por trás de cada máscara existe um segredo, e por trás desta noite existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.
-<br><br>
-Você está convidado(a) para viver uma noite mágica, cheia de encanto, surpresas e momentos inesquecíveis.
-<br><br>
-As máscaras estão prontas. E você, está preparado(a) para essa noite?
-</p>
+      <svg class="corner c4" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 95V38Q5 5 38 5H95 M7 65Q30 65 30 42Q30 27 44 27Q64 27 64 6 M7 80Q42 80 42 48Q42 37 53 37Q76 37 76 6"/>
+        <path d="M12 89Q24 69 44 69Q67 69 67 46Q67 28 90 25"/>
+      </svg>
 
-<div class="fleur">✦ ♛ ✦</div>
+      <div class="content">
+        <div class="royal-label">UMA NOITE DE MISTÉRIO E ELEGÂNCIA</div>
 
-<div class="details">
-<div><strong>♜ DATA</strong><span>A DEFINIR</span></div>
-<div><strong>♜ HORÁRIO</strong><span>A DEFINIR</span></div>
-<div><strong>♜ LOCAL</strong><a href="https://maps.google.com/" target="_blank" rel="noopener">Ver localização</a></div>
-</div>
+        <svg class="mask" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Máscara veneziana dourada">
+          <defs>
+            <linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#fff1ba"/>
+              <stop offset=".35" stop-color="#c59a45"/>
+              <stop offset=".7" stop-color="#f7df98"/>
+              <stop offset="1" stop-color="#8a5b1b"/>
+            </linearGradient>
+            <linearGradient id="mb" x1="0" y1="0" x2="0" y2="1">
+              <stop stop-color="#5b1021"/>
+              <stop offset="1" stop-color="#19070d"/>
+            </linearGradient>
+          </defs>
+          <path d="M19 47Q44 15 91 30Q122 40 150 20Q178 40 209 30Q256 15 281 47Q265 67 244 78Q224 101 193 93Q171 87 158 65L150 57L142 65Q129 87 107 93Q76 101 56 78Q35 67 19 47Z" fill="url(#mg)" stroke="#80571d" stroke-width="3"/>
+          <path d="M25 46Q52 31 91 39Q118 45 139 59Q116 70 91 61Q66 53 47 70Q32 60 25 46Z" fill="url(#mb)" stroke="#f4d783" stroke-width="2"/>
+          <path d="M275 46Q248 31 209 39Q182 45 161 59Q184 70 209 61Q234 53 253 70Q268 60 275 46Z" fill="url(#mb)" stroke="#f4d783" stroke-width="2"/>
+          <path d="M150 20Q133 39 150 57Q167 39 150 20Z" fill="#fff0b0" stroke="#94691f" stroke-width="2"/>
+          <path d="M19 47Q-1 30 10 10Q31 11 46 34M281 47Q301 30 290 10Q269 11 254 34" fill="url(#mg)" stroke="#80571d" stroke-width="2"/>
+          <path d="M56 78Q44 105 29 134M244 78Q256 105 271 134" fill="none" stroke="url(#mg)" stroke-width="5" stroke-linecap="round"/>
+          <g fill="#fff0b0" stroke="#956a24" stroke-width="1.5">
+            <circle cx="38" cy="47" r="4"/><circle cx="63" cy="57" r="3"/>
+            <circle cx="262" cy="47" r="4"/><circle cx="237" cy="57" r="3"/>
+            <circle cx="150" cy="13" r="4"/>
+          </g>
+          <path d="M99 32Q115 13 131 29L121 37M201 32Q185 13 169 29L179 37" fill="none" stroke="#f9e8ae" stroke-width="3"/>
+          <path d="M12 24Q25 21 33 34M288 24Q275 21 267 34" fill="none" stroke="#f9e8ae" stroke-width="2"/>
+        </svg>
 
-<a class="confirm" id="confirmButton" href="#" target="_blank" rel="noopener">CONFIRMAR PRESENÇA</a>
+        <div class="subtitle">VOCÊ É NOSSO CONVIDADO ESPECIAL</div>
+        <h2>XV da Mary</h2>
+        <div class="ornament">❧ ─── ♛ ─── ❧</div>
+      </div>
 
-<div class="signature">Com carinho,<strong>A DEBUTANTE</strong>🖤✨</div>
-<div class="bottom-ornament">❧ ✧ ♛ ✧ ❧</div>
-</article>
-<div class="roll"></div>
-</div>
+      <div class="content">
+        <p class="opening">Prepare-se para uma noite onde o mistério encontra a elegância…</p>
+      </div>
+
+      <div class="content">
+        <p class="message">
+          Por trás de cada máscara existe um segredo, e por trás desta noite existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.
+          <br><br>
+          Você está convidado(a) para viver uma noite mágica, cheia de encanto, surpresas e momentos inesquecíveis.
+          <br><br>
+          As máscaras estão prontas. E você, está preparado(a) para essa noite?
+        </p>
+        <div class="ornament">✧ ❧ ✧</div>
+      </div>
+
+      <div class="content">
+        <div class="details">
+          <div><strong>DATA</strong>A DEFINIR</div>
+          <div><strong>HORÁRIO</strong>A DEFINIR</div>
+          <div><strong>LOCAL</strong><a href="https://maps.google.com/" target="_blank" rel="noopener">Ver localização</a></div>
+        </div>
+        <a class="confirm" href="#" onclick="return false">CONFIRMAR PRESENÇA</a>
+      </div>
+
+      <div class="content">
+        <div class="signature">
+          Com carinho,
+          <strong>A debutante. 🖤✨</strong>
+        </div>
+        <div class="ornament">❧ ✧ ♛ ✧ ❧</div>
+      </div>
+    </article>
+
+    <div class="roller"></div>
+  </div>
 </main>
 
 <script>
-function openInvitation(){
-  const intro=document.getElementById("intro");
-  const invitation=document.getElementById("invitation");
-  intro.style.display="none";
-  invitation.classList.add("visible");
-  invitation.classList.remove("unrolling");
-  void invitation.offsetWidth;
-  invitation.classList.add("unrolling");
+let opened = false;
+
+function openInvitation() {
+  if (opened) return;
+  opened = true;
+
+  const envelope = document.getElementById("envelope");
+  const intro = document.getElementById("intro");
+  const invitation = document.getElementById("invitation");
+  const scroll = document.getElementById("scroll");
+
+  envelope.classList.add("open");
+
+  setTimeout(() => {
+    intro.style.display = "none";
+    invitation.style.display = "block";
+    invitation.classList.add("visible");
+
+    scroll.animate([
+      { clipPath: "inset(0 0 50% 0)", opacity: 0.5 },
+      { clipPath: "inset(0 0 0 0)", opacity: 1 }
+    ], {
+      duration: 1800,
+      easing: "ease-in-out",
+      fill: "forwards"
+    });
+
+    invitation.classList.add("unrolling");
+  }, 850);
 }
 </script>
+
 </body>
 </html>
