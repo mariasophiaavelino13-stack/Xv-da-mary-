@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XV da Mary</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #100d0d;
+  color: #f4e6c9;
+  font-family: Georgia, serif;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+}
+#entrada { text-align: center; }
+.envelope {
+  width: min(330px, 85vw);
+  height: 220px;
+  margin: 25px auto;
+  background: linear-gradient(145deg,#242020,#090808);
+  border: 2px solid #b58a43;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  box-shadow: 0 12px 35px #000;
+}
+.selo {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: radial-gradient(#c9342e,#781410);
+  color: #ffe5b0;
+  border: 3px solid #dfad69;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px #000;
+}
+#entrada p { color: #d6bd91; }
+#convite {
+  display: none;
+  width: min(480px, 100%);
+  background: #ead9b8;
+  color: #282018;
+  padding: 35px 25px;
+  border: 7px double #a77b39;
+  box-shadow: 0 12px 40px #000;
+  position: relative;
+  animation: surgir 1.2s ease;
+}
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(35px) scale(.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.mascara {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  font-size: 48px;
+  transform: rotate(-25deg);
+}
+h1 {
+  text-align: center;
+  color: #80551e;
+  font-size: 38px;
+  margin: 45px 0 5px;
+}
+.sub { text-align: center; letter-spacing: 4px; }
+.frase {
+  text-align: center;
+  line-height: 1.7;
+  margin: 25px 0;
+}
+.detalhes {
+  border-top: 1px solid #a77b39;
+  border-bottom: 1px solid #a77b39;
+  padding: 15px 5px;
+  line-height: 2.2;
+}
+.detalhes a { color: #80551e; text-decoration: none; }
+button.acao {
+  display: block;
+  margin: 25px auto 0;
+  padding: 13px 18px;
+  background: #201817;
+  color: #f3d49a;
+  border: 1px solid #b58a43;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+small { display: block; text-align: center; margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<section id="entrada">
+  <p>UMA SURPRESA ESPERA POR VOCÊ</p>
+  <div class="envelope">
+    <button class="selo" onclick="abrir()" aria-label="Abrir convite">XV</button>
+  </div>
+  <p>Toque no selo para abrir sua carta</p>
+</section>
+
+<main id="convite">
+  <div class="mascara">🎭</div>
+  <h1>XV da Mary</h1>
+  <div class="sub">BAILE DE MÁSCARAS</div>
+
+  <p class="frase">
+    Prepare-se para uma noite onde o mistério encontra a elegância…<br><br>
+    Por trás de cada máscara existe um segredo, e por trás desta noite
+    existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.<br><br>
+    Você está convidado(a) para viver uma noite mágica,
+    cheia de encanto, surpresas e momentos inesquecíveis.
+  </p>
+
+  <div class="detalhes">
+    <div>📍 <a id="mapa" href="https://maps.google.com/" target="_blank">LOCAL — toque para abrir o mapa</a></div>
+    <div>📅 DATA: A DEFINIR</div>
+    <div>🕰️ HORA: A DEFINIR</div>
+  </div>
+
+  <button class="acao" onclick="confirmar()">
+    CONFIRME SUA PRESENÇA
+  </button>
+  <small>Com carinho, Mary 🖤</small>
+</main>
+
+<script>
+// Vamos preencher o endereço, a data, a hora e o WhatsApp depois.
+const WHATSAPP = "";
+
+function abrir() {
+  document.getElementById("entrada").style.display = "none";
+  document.getElementById("convite").style.display = "block";
+}
+function confirmar() {
+  if (!WHATSAPP) {
+    alert("O WhatsApp será configurado quando terminarmos o convite!");
+    return;
+  }
+  const mensagem = encodeURIComponent(
+    "Oii! Estou confirmando minha presença nos XV da Mary! 🖤🎭"
+  );
+  window.open("https://wa.me/" + WHATSAPP + "?text=" + mensagem);
+}
+</script>
+</body>
+</html>
