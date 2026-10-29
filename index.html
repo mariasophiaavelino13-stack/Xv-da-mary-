@@ -1,328 +1,144 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XV da Mary</title>
+<title>XV da Mary — Baile de Máscaras</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --gold: #d8b568;
-  --gold-light: #f7e6b0;
-  --wine: #790d20;
-  --paper: #ead8ae;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  padding: 24px 14px 45px;
-  color: var(--gold-light);
-  background: radial-gradient(ellipse at center, #38231d, #100b0b 65%, #030303);
-  font-family: "Cormorant Garamond", serif;
-  text-align: center;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 8px;
-  border: 1px solid #a98948;
-  pointer-events: none;
-  z-index: 5;
-}
-h1, h2, button { font-family: "Cinzel", serif; }
-.intro {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-}
-.intro h1 {
-  font-size: clamp(30px, 8vw, 48px);
-  letter-spacing: 4px;
-  margin: 0;
-}
-.intro p { font-size: 21px; color: #e0c98e; }
-.envelope {
-  position: relative;
-  width: min(330px, 88vw);
-  height: 215px;
-  display: grid;
-  place-items: center;
-  border: 2px solid var(--gold);
-  background: linear-gradient(145deg, #351116, #090708 75%);
-  box-shadow: 0 0 35px #000, inset 0 0 20px #b58b3b33;
-  overflow: hidden;
-}
-.envelope::before {
-  content: "";
-  position: absolute;
-  width: 240px;
-  height: 240px;
-  border: 1px solid var(--gold);
-  transform: rotate(45deg);
-  opacity: .5;
-}
-.seal {
-  z-index: 1;
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
-  border: 2px solid #f5d991;
-  color: #ffe8aa;
-  background: radial-gradient(circle at 35% 25%, #bd3140, #650719 75%);
-  box-shadow: inset 0 0 0 5px #8d2430, 0 0 20px #000;
-  font-size: 22px;
-  cursor: pointer;
-}
-.tap-hint {
-  font-size: 17px;
-  letter-spacing: 2px;
-  color: #ddc58f;
-}
-#invitation {
-  display: none;
-  width: 100%;
-  max-width: 560px;
-  margin: 0 auto;
-}
-#invitation.visible { display: block; }
-.scroll {
-  width: 100%;
-  padding: 10px;
-  transform-origin: top center;
-  transform: scaleY(0);
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  background: linear-gradient(90deg, #795522, #f2d991 12%, #b38c45 50%, #f1d895 88%, #775522);
-  box-shadow: 0 15px 40px #000b, 0 0 35px #c49c4933;
-}
-#invitation.unrolling .scroll {
-  animation: unroll 2.2s ease-out forwards;
-}
-@keyframes unroll {
-  0% { transform: scaleY(.02); opacity: 0; max-height: 0; }
-  25% { opacity: 1; }
-  100% { transform: scaleY(1); opacity: 1; max-height: 1800px; }
-}
-.paper {
-  position: relative;
-  overflow: hidden;
-  min-height: 600px;
-  padding: 35px 23px;
-  color: #342416;
-  background:
-    radial-gradient(ellipse at 15% 10%, #fff5d7bb, transparent 40%),
-    radial-gradient(ellipse at 85% 90%, #b9914c55, transparent 35%),
-    repeating-linear-gradient(0deg, #ead8ae, #f2e4c4 4px, #e8d3a5 8px);
-  border: 2px solid #8d6a31;
-}
-.paper::before {
-  content: "";
-  position: absolute;
-  inset: 9px;
-  border: 1px solid #a78342;
-  pointer-events: none;
-}
-.corner {
-  position: absolute;
-  width: 75px;
-  height: 75px;
-  color: #997333;
-  pointer-events: none;
-}
-.corner svg { width: 100%; height: 100%; }
-.tl { top: 7px; left: 7px; }
-.tr { top: 7px; right: 7px; transform: scaleX(-1); }
-.bl { bottom: 7px; left: 7px; transform: scaleY(-1); }
-.br { bottom: 7px; right: 7px; transform: scale(-1); }
-.mask {
-  display: block;
-  width: 170px;
-  max-width: 52%;
-  margin: 5px auto 15px;
-  transform: rotate(-8deg);
-  filter: drop-shadow(2px 5px 3px #4a321b77);
-}
-.small-title {
-  font-family: "Cinzel", serif;
-  font-size: 12px;
-  letter-spacing: 4px;
-  color: #795b2b;
-  margin-top: 12px;
-}
-.paper h2 {
-  font-size: clamp(30px, 8vw, 43px);
-  line-height: 1.2;
-  color: #67111d;
-  margin: 12px 0;
-  font-weight: 600;
-}
-.ornament {
-  color: #96702e;
-  letter-spacing: 7px;
-  font-size: 19px;
-  margin: 9px 0;
-}
-.intro-text {
-  font-size: 22px;
-  font-style: italic;
-  margin: 13px 0 18px;
-}
-.message {
-  max-width: 420px;
-  margin: 0 auto;
-  font-size: 20px;
-  line-height: 1.5;
-}
-.details {
-  margin: 25px auto 15px;
-  padding: 15px 8px;
-  border-top: 1px solid #b4965c;
-  border-bottom: 1px solid #b4965c;
-  display: grid;
-  gap: 13px;
-  font-size: 20px;
-}
-.details strong {
-  display: block;
-  font-family: "Cinzel", serif;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: #7d1824;
-  margin-bottom: 3px;
-}
-.details a { color: #342416; text-decoration: underline; }
-.confirm {
-  display: inline-block;
-  margin-top: 18px;
-  padding: 13px 18px;
-  border: 1px solid #e0bf70;
-  background: linear-gradient(135deg, #8e1727, #430711);
-  color: #fff0c8;
-  font-family: "Cinzel", serif;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px #6e421e44;
-}
-.footer {
-  margin-top: 20px;
-  font-size: 18px;
-  font-style: italic;
-  color: #705225;
-}
-@media (max-width: 380px) {
-  .paper { padding: 30px 16px; }
-  .message { font-size: 18px; }
-  .intro-text { font-size: 20px; }
-}
+:root{--gold:#c7a052;--light:#f7e8b8;--wine:#650e20;--ink:#291a13}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:24px 12px 40px;background:radial-gradient(ellipse,#38231d,#100909 65%,#020202);font-family:"Cormorant Garamond",serif;color:var(--light);text-align:center}
+body:before{content:"";position:fixed;inset:7px;border:1px solid var(--gold);pointer-events:none;z-index:10}
+h1,h2,button{font-family:"Cinzel",serif}
+.intro{min-height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:18px}
+.intro h1{font-size:clamp(30px,8vw,47px);letter-spacing:4px;margin:0}
+.intro p{font-size:21px;color:var(--light)}
+.envelope{position:relative;width:min(330px,88vw);height:220px;display:grid;place-items:center;background:linear-gradient(140deg,#42101a,#100809 70%);border:2px solid var(--gold);box-shadow:0 0 30px #000,inset 0 0 20px #b38b4033;overflow:hidden}
+.envelope:before,.envelope:after{content:"";position:absolute;width:220px;height:220px;border:1px solid var(--gold);transform:rotate(45deg);opacity:.6}
+.envelope:before{top:-165px}
+.envelope:after{bottom:-165px}
+.seal{position:relative;z-index:2;width:82px;height:82px;border-radius:50%;border:2px solid #f8dfa0;background:radial-gradient(circle at 35% 25%,#bd3545,#650719 75%);color:#ffe7a3;box-shadow:inset 0 0 0 5px #8d2430,0 0 20px #000;font-size:22px;cursor:pointer}
+.tap{font-size:16px;letter-spacing:2px;color:#e5ce98}
+#invitation{display:none;width:100%;max-width:560px;margin:auto}
+#invitation.visible{display:block}
+.scroll{position:relative;padding:12px 10px;background:linear-gradient(90deg,#6e4c1e,#efd38b 10%,#b38b42 50%,#f3d993 90%,#68471d);transform-origin:top;transform:scaleY(0);opacity:0;max-height:0;overflow:hidden;box-shadow:0 15px 40px #000c}
+#invitation.unrolling .scroll{animation:unroll 2.3s cubic-bezier(.2,.75,.25,1) forwards}
+@keyframes unroll{0%{transform:scaleY(.02);opacity:0;max-height:0}20%{opacity:1}100%{transform:scaleY(1);opacity:1;max-height:2000px}}
+.roll{height:30px;position:relative;z-index:2;border-radius:50%;border:2px solid #89601f;background:linear-gradient(#f5dfa0,#a97a2e 35%,#f6e3a4 70%,#93651e);box-shadow:0 3px 7px #28160999}
+.roll:after{content:"";position:absolute;left:5%;right:5%;top:7px;height:11px;border-radius:50%;background:linear-gradient(#9b712c,#e8c878,#8b6125);border:1px solid #d9b665}
+.paper{position:relative;overflow:hidden;margin-top:-2px;padding:32px 23px 30px;color:var(--ink);border:2px solid #94702f;background:radial-gradient(ellipse at 15% 10%,#fff7dfcc,transparent 45%),radial-gradient(ellipse at 90% 85%,#b38b4233,transparent 40%),repeating-linear-gradient(0deg,#e5d0a2,#f0e1bc 4px,#e6d2a6 8px)}
+.paper:before{content:"";position:absolute;inset:9px;border:1px solid #9d7b3d;pointer-events:none}
+.corner{position:absolute;width:76px;height:76px;color:#9a742f;z-index:1}
+.corner svg{width:100%;height:100%}
+.tl{top:9px;left:9px}.tr{top:9px;right:9px;transform:scaleX(-1)}.bl{bottom:9px;left:9px;transform:scaleY(-1)}.br{bottom:9px;right:9px;transform:scale(-1)}
+.top-label{font-family:"Cinzel",serif;font-size:10px;letter-spacing:3px;color:#785723;margin:12px 0}
+.mask{display:block;width:155px;height:auto;max-width:48%;margin:13px auto 16px;filter:drop-shadow(2px 4px 3px #35220b77)}
+.fleur{color:#98712e;letter-spacing:5px;font-size:18px;margin:9px 0}
+.paper h2{font-size:clamp(30px,8vw,44px);line-height:1.2;color:#6a1424;margin:13px 0}
+.subtitle{font-family:"Cinzel",serif;font-size:11px;letter-spacing:3px;color:#785723}
+.opening{font-size:22px;font-style:italic;margin:20px 0 16px}
+.message{font-size:20px;line-height:1.48;max-width:420px;margin:auto}
+.details{margin:24px auto 14px;padding:15px 7px;border-top:1px solid #b3965d;border-bottom:1px solid #b3965d;display:grid;gap:12px;font-size:20px}
+.details strong{display:block;font-family:"Cinzel",serif;font-size:11px;letter-spacing:2px;color:#741829;margin-bottom:3px}
+.details a{color:#342416}
+.confirm{display:inline-block;margin-top:17px;padding:13px 16px;border:1px solid #e3c57a;background:linear-gradient(135deg,#851c2c,#410610);color:#fff0c7;text-decoration:none;font-family:"Cinzel",serif;font-size:11px;letter-spacing:1px}
+.signature{font-size:23px;font-style:italic;line-height:1.5;margin-top:25px;color:#5f1422}
+.signature strong{display:block;font-family:"Cinzel",serif;font-size:14px;letter-spacing:2px;font-style:normal}
+.bottom-ornament{font-size:22px;color:#9b742e;margin:14px 0 5px}
+@media(max-width:380px){.paper{padding:30px 15px}.message{font-size:18px}.opening{font-size:20px}}
 </style>
 </head>
-
 <body>
+
 <section class="intro" id="intro">
-  <h1>XV da Mary</h1>
-  <p>Uma noite de mistério e elegância</p>
-
-  <div class="envelope">
-    <button class="seal" onclick="openInvitation()" aria-label="Abrir convite">XV</button>
-  </div>
-
-  <div class="tap-hint">TOQUE NO LACRE PARA ABRIR</div>
+<h1>XV da Mary</h1>
+<p>Um baile de mistério, encanto e realeza</p>
+<div class="envelope">
+<button class="seal" onclick="openInvitation()" aria-label="Abrir convite">XV</button>
+</div>
+<div class="tap">TOQUE NO LACRE PARA ABRIR</div>
 </section>
 
 <main id="invitation">
-  <div class="scroll">
-    <article class="paper">
+<div class="scroll">
+<div class="roll"></div>
+<article class="paper">
 
-      <svg class="corner tl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
-        <path d="M10 90Q20 70 40 70Q60 70 60 50Q60 40 75 40Q85 40 90 30"/>
-      </svg>
-      <svg class="corner tr" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
-      </svg>
-      <svg class="corner bl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
-      </svg>
-      <svg class="corner br" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
-      </svg>
+<svg class="corner tl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
+<path d="M10 90Q20 70 40 70Q60 70 60 50Q60 40 75 40Q85 40 90 30"/>
+</svg>
+<svg class="corner tr" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
+</svg>
+<svg class="corner bl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
+</svg>
+<svg class="corner br" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 95V35Q5 5 35 5H95M5 60Q25 60 25 40Q25 25 40 25Q60 25 60 5M5 78Q40 78 40 45Q40 35 50 35Q70 35 70 5M25 95Q25 75 45 75Q75 75 75 45Q75 25 95 25"/>
+</svg>
 
-      <svg class="mask" viewBox="0 0 260 125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Máscara veneziana dourada">
-        <defs>
-          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#fff0a8"/>
-            <stop offset=".35" stop-color="#bd8b29"/>
-            <stop offset=".62" stop-color="#f6d875"/>
-            <stop offset="1" stop-color="#8b5b13"/>
-          </linearGradient>
-        </defs>
-        <path d="M12 30 Q42 8 82 23 Q105 31 130 20 Q155 31 178 23 Q218 8 248 30 Q235 48 219 60 Q204 80 178 82 Q154 82 139 57 L130 48 L121 57 Q106 82 82 82 Q56 80 41 60 Q25 48 12 30Z" fill="url(#gold)" stroke="#765016" stroke-width="3"/>
-        <path d="M15 31 Q45 18 81 30 Q105 39 121 51 Q105 61 87 54 Q59 45 40 58 Q25 48 15 31Z" fill="#1b0c0c" stroke="#e7c66d" stroke-width="2"/>
-        <path d="M245 31 Q215 18 179 30 Q155 39 139 51 Q155 61 173 54 Q201 45 220 58 Q235 48 245 31Z" fill="#1b0c0c" stroke="#e7c66d" stroke-width="2"/>
-        <path d="M130 20 Q116 38 130 48 Q144 38 130 20Z" fill="#f8e5a0" stroke="#9b6a1a" stroke-width="2"/>
-        <path d="M49 25 Q65 13 82 26 M178 26 Q195 13 211 25" fill="none" stroke="#fff0ae" stroke-width="3"/>
-        <path d="M22 31 Q3 19 8 6 Q29 9 38 24 M238 31 Q257 19 252 6 Q231 9 222 24" fill="url(#gold)" stroke="#8d641d" stroke-width="2"/>
-        <circle cx="34" cy="39" r="3" fill="#f8e5a0"/>
-        <circle cx="226" cy="39" r="3" fill="#f8e5a0"/>
-        <path d="M58 69 Q45 95 35 115 M201 69 Q214 95 225 115" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round"/>
-        <path d="M35 115 l-8 -8 m8 8 l9 -2 M225 115 l8 -8 m-8 8 l-9 -2" stroke="#d8b568" stroke-width="3"/>
-      </svg>
+<svg class="mask" viewBox="0 0 300 145" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Máscara veneziana dourada ornamentada">
+<defs>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff1b5"/><stop offset=".35" stop-color="#bd8b29"/><stop offset=".65" stop-color="#f8dc80"/><stop offset="1" stop-color="#805016"/></linearGradient>
+<linearGradient id="shadow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4b1020"/><stop offset="1" stop-color="#16080b"/></linearGradient>
+</defs>
+<path d="M18 43Q43 15 91 31Q119 39 150 23Q181 39 209 31Q257 15 282 43Q265 66 244 77Q225 99 194 94Q172 91 158 68L150 59L142 68Q128 91 106 94Q75 99 56 77Q35 66 18 43Z" fill="url(#gold)" stroke="#79511a" stroke-width="3"/>
+<path d="M22 43Q50 29 91 39Q117 46 139 61Q117 70 93 61Q65 51 46 70Q31 59 22 43Z" fill="url(#shadow)" stroke="#f1d17b" stroke-width="2"/>
+<path d="M278 43Q250 29 209 39Q183 46 161 61Q183 70 207 61Q235 51 254 70Q269 59 278 43Z" fill="url(#shadow)" stroke="#f1d17b" stroke-width="2"/>
+<path d="M150 23Q132 43 150 59Q168 43 150 23Z" fill="#fff0aa" stroke="#90651c" stroke-width="2"/>
+<path d="M43 33Q59 13 82 29L68 37M257 33Q241 13 218 29L232 37" fill="none" stroke="#fff0ad" stroke-width="3"/>
+<path d="M18 43Q-2 27 9 8Q32 11 45 34M282 43Q302 27 291 8Q268 11 255 34" fill="url(#gold)" stroke="#8e641c" stroke-width="2"/>
+<path d="M57 79Q45 107 31 133M243 79Q255 107 269 133" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round"/>
+<path d="M31 133l-8 -9m8 9l10 -3M269 133l8 -9m-8 9l-10 -3" fill="none" stroke="#d9b35e" stroke-width="3"/>
+<g fill="#f9e7a6" stroke="#9c7026" stroke-width="1.5">
+<circle cx="36" cy="47" r="4"/><circle cx="61" cy="57" r="3"/><circle cx="264" cy="47" r="4"/><circle cx="239" cy="57" r="3"/><circle cx="150" cy="15" r="4"/>
+</g>
+<path d="M105 34Q116 18 130 29L121 37M195 34Q184 18 170 29L179 37" fill="none" stroke="#f7e5a1" stroke-width="3"/>
+</svg>
 
-      <div class="small-title">UMA NOITE INESQUECÍVEL</div>
-      <div class="ornament">✦ ❧ ✦ ❧ ✦</div>
-      <h2>XV da Mary</h2>
-      <div class="ornament">❧ ─── ✧ ─── ❧</div>
+<div class="top-label">UM CONVITE REAL PARA UMA NOITE ESPECIAL</div>
+<div class="fleur">✧ ❧ ♛ ❧ ✧</div>
+<div class="subtitle">VOCÊ É NOSSO CONVIDADO ESPECIAL</div>
+<h2>XV da Mary</h2>
+<div class="fleur">❧ ───── ✦ ───── ❧</div>
 
-      <p class="intro-text">Prepare-se para uma noite onde o mistério encontra a elegância…</p>
+<p class="opening">Prepare-se para uma noite onde o mistério encontra a elegância…</p>
 
-      <p class="message">
-        Por trás de cada máscara existe um segredo, e por trás desta noite existe um sonho:
-        celebrar meus 15 anos ao lado de pessoas especiais.
-        <br><br>
-        Você está convidado(a) para viver uma noite mágica, cheia de encanto, surpresas e momentos inesquecíveis.
-      </p>
+<p class="message">
+Por trás de cada máscara existe um segredo, e por trás desta noite existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.
+<br><br>
+Você está convidado(a) para viver uma noite mágica, cheia de encanto, surpresas e momentos inesquecíveis.
+<br><br>
+As máscaras estão prontas. E você, está preparado(a) para essa noite?
+</p>
 
-      <div class="details">
-        <div>
-          <strong>DATA</strong>
-          <span>A DEFINIR</span>
-        </div>
-        <div>
-          <strong>HORÁRIO</strong>
-          <span>A DEFINIR</span>
-        </div>
-        <div>
-          <strong>LOCAL</strong>
-          <a href="https://maps.google.com/" target="_blank" rel="noopener">Ver localização</a>
-        </div>
-      </div>
+<div class="fleur">✦ ♛ ✦</div>
 
-      <a class="confirm" id="confirmButton" href="#" target="_blank" rel="noopener">
-        CONFIRMAR PRESENÇA
-      </a>
+<div class="details">
+<div><strong>♜ DATA</strong><span>A DEFINIR</span></div>
+<div><strong>♜ HORÁRIO</strong><span>A DEFINIR</span></div>
+<div><strong>♜ LOCAL</strong><a href="https://maps.google.com/" target="_blank" rel="noopener">Ver localização</a></div>
+</div>
 
-      <div class="footer">Com carinho, Mary ✦</div>
-      <div class="ornament">✧ ❧ ✧ ❧ ✧</div>
-    </article>
-  </div>
+<a class="confirm" id="confirmButton" href="#" target="_blank" rel="noopener">CONFIRMAR PRESENÇA</a>
+
+<div class="signature">Com carinho,<strong>A DEBUTANTE</strong>🖤✨</div>
+<div class="bottom-ornament">❧ ✧ ♛ ✧ ❧</div>
+</article>
+<div class="roll"></div>
+</div>
 </main>
 
 <script>
-function openInvitation() {
-  const intro = document.getElementById("intro");
-  const invitation = document.getElementById("invitation");
-
-  intro.style.display = "none";
+function openInvitation(){
+  const intro=document.getElementById("intro");
+  const invitation=document.getElementById("invitation");
+  intro.style.display="none";
   invitation.classList.add("visible");
   invitation.classList.remove("unrolling");
-
   void invitation.offsetWidth;
   invitation.classList.add("unrolling");
 }
