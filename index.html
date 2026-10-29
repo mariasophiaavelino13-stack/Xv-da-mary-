@@ -4,388 +4,452 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meus 15 anos</title>
+<title>XV da Mary</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --gold: #d8b45b;
-  --gold-light: #f6dfa0;
-  --black: #080706;
-  --wine: #4b0715;
+  --gold-light: #f4df9a;
+  --gold-dark: #8c6425;
+  --red: #8d1024;
+  --red-light: #bd3445;
+  --black: #080707;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse at top, #30200d 0%, #100d09 45%, #030303 100%);
-  color: var(--gold-light);
   font-family: 'Cormorant Garamond', serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 25px 12px;
-  overflow-x: hidden;
+  background: #e9ddc8;
 }
 
-/* ABERTURA */
+/* PRIMEIRA TELA — ENVELOPE BEGE */
 
 #opening {
-  width: min(430px, 94vw);
-  height: 290px;
-  position: relative;
-  cursor: pointer;
-  perspective: 1000px;
-  filter: drop-shadow(0 15px 35px #000);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background:
+    radial-gradient(ellipse at center, #fff8e9 0%, #e8d8bd 65%, #cbb58f 100%);
+  transition: opacity 1s ease;
+}
+
+.opening-title {
+  color: #75552b;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 4px;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 35px;
 }
 
 .envelope {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(145deg, #17130e, #050505 65%, #21180d);
-  border: 2px solid var(--gold);
-  box-shadow: inset 0 0 25px #b58a3438, 0 0 18px #b58a3440;
+  position: relative;
+  width: min(88vw, 390px);
+  height: 245px;
+  background: linear-gradient(145deg, #f5e8d0, #d9c39f);
+  border: 2px solid #b89455;
+  box-shadow: 0 18px 45px #5b452c45;
+  cursor: pointer;
+  overflow: visible;
 }
 
-.envelope:before,
-.envelope:after {
+.envelope::before {
   content: "";
   position: absolute;
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
+  inset: 0;
+  background:
+    linear-gradient(145deg, transparent 49.5%, #c5a779 50%, transparent 50.7%),
+    linear-gradient(35deg, transparent 49.5%, #c5a779 50%, transparent 50.7%);
+  z-index: 2;
 }
 
-.envelope:before {
-  left: 0;
-  border-width: 145px 215px 0;
-  border-color: transparent transparent transparent #241b0e;
-}
-
-.envelope:after {
-  right: 0;
-  border-width: 145px 0 0 215px;
-  border-color: transparent transparent transparent #30200d;
-}
-
-.flap {
+.envelope::after {
+  content: "";
   position: absolute;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 213px solid transparent;
-  border-right: 213px solid transparent;
-  border-top: 155px solid #21180e;
+  inset: 0;
+  background: linear-gradient(135deg, #f4e6ce, #dfc9a6);
+  clip-path: polygon(0 0, 100% 0, 50% 62%);
+  border-top: 1px solid #b89455;
   transform-origin: top;
   transition: transform 1s ease;
-  filter: drop-shadow(0 3px 4px #000);
+  z-index: 3;
 }
 
-.seal {
-  position: absolute;
-  z-index: 5;
-  top: 105px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #5d3b10, #a77924 55%, #3b240b);
-  border: 2px solid var(--gold-light);
-  box-shadow: 0 0 16px #d8b45b80;
-  display: grid;
-  place-items: center;
-  font-family: Cinzel, serif;
-  font-size: 25px;
-  color: #fff0bc;
-}
-
-.opening-text {
-  position: absolute;
-  z-index: 6;
-  bottom: 18px;
-  width: 100%;
-  text-align: center;
-  font-family: Cinzel, serif;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--gold-light);
-}
-
-#opening.open .flap {
+.envelope.open::after {
   transform: rotateX(180deg);
 }
 
-#opening.open {
-  display: none;
+.envelope-bottom {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #e8d5b5, #d3bb94);
+  clip-path: polygon(0 100%, 50% 43%, 100% 100%);
+  z-index: 1;
 }
 
-/* CONVITE */
+.envelope-inner {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #c4a46e;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* SELO DE CERA IRREGULAR */
+
+.wax-seal {
+  position: absolute;
+  width: 91px;
+  height: 91px;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background:
+    radial-gradient(circle at 32% 25%, #d95a59 0%, #a51d2d 35%, #650b19 78%, #3e0710 100%);
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 27px;
+  font-weight: 700;
+  text-shadow: 0 2px 2px #4a0710;
+  border: 2px solid #7d1723;
+  border-radius: 46% 54% 43% 57% / 54% 43% 57% 46%;
+  box-shadow:
+    inset 3px 4px 7px #f58a7b66,
+    inset -5px -7px 9px #36030b99,
+    0 5px 10px #4b1b1b66;
+  animation: waxPulse 3s infinite ease-in-out;
+}
+
+.wax-seal::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 5px solid #8b1725;
+  border-radius: 55% 45% 58% 42% / 43% 58% 42% 57%;
+  filter: drop-shadow(0 3px 2px #4d1114);
+  z-index: -1;
+}
+
+.wax-seal::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid #e8c66c;
+  border-radius: 48% 52% 45% 55%;
+  opacity: .8;
+}
+
+@keyframes waxPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.12); }
+}
+
+.opening-instruction {
+  color: #77572e;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-top: 38px;
+  text-align: center;
+}
+
+/* SEGUNDA TELA — CONVITE PRETO */
 
 #invitation {
   display: none;
-  width: min(760px, 96vw);
-  animation: appear 1.2s ease forwards;
+  min-height: 100vh;
+  padding: 28px 14px 45px;
+  background:
+    radial-gradient(ellipse at center, #211014 0%, #090707 70%, #030303 100%);
+  opacity: 0;
+  transition: opacity 1.2s ease;
 }
 
-#invitation.show { display: block; }
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(20px) scale(.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+#invitation.show {
+  display: block;
+  opacity: 1;
 }
 
 .paper {
   position: relative;
-  background:
-    radial-gradient(ellipse at center, #17130d 0%, #0b0907 65%, #050505 100%);
-  border: 3px double var(--gold);
-  outline: 1px solid #76551b;
-  outline-offset: 7px;
-  padding: 40px 35px 38px;
-  text-align: center;
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: 48px 28px 42px;
   overflow: hidden;
-  box-shadow: 0 0 35px #000, inset 0 0 55px #c49a3b16;
+  text-align: center;
+  color: var(--gold-light);
+  background:
+    radial-gradient(ellipse at 50% 45%, #171010 0%, #080707 72%);
+  border: 3px double var(--gold);
+  box-shadow:
+    0 0 0 7px #110b0b,
+    0 0 0 9px #9c742e,
+    0 0 45px #000;
 }
 
-/* MOLDURA ORNAMENTADA */
-
-.paper:before {
-  content: "❧  ✦  ❧";
+.paper::before {
+  content: "✦ ❧ ✧ ❧ ✦";
   position: absolute;
-  top: 8px;
+  top: 12px;
   left: 0;
-  right: 0;
-  color: var(--gold);
-  font-size: 23px;
+  width: 100%;
+  color: var(--red-light);
+  font-size: 25px;
   letter-spacing: 12px;
 }
 
-.paper:after {
-  content: "✦  ❧  ✦";
+.paper::after {
+  content: "✦ ❧ ✧ ❧ ✦";
   position: absolute;
-  bottom: 7px;
+  bottom: 12px;
   left: 0;
-  right: 0;
-  color: var(--gold);
-  font-size: 22px;
+  width: 100%;
+  color: var(--red-light);
+  font-size: 25px;
   letter-spacing: 12px;
 }
 
 .corner {
   position: absolute;
   color: var(--gold);
-  font-size: 38px;
-  text-shadow: 0 0 12px #d8b45b80;
+  font-size: 43px;
+  line-height: 1;
+  text-shadow: 0 0 10px #b98a39;
 }
 
-.tl { top: 12px; left: 13px; }
-.tr { top: 12px; right: 13px; transform: scaleX(-1); }
-.bl { bottom: 12px; left: 13px; transform: rotate(180deg); }
-.br { bottom: 12px; right: 13px; transform: rotate(180deg) scaleX(-1); }
+.top-left { top: 12px; left: 12px; }
+.top-right { top: 12px; right: 12px; transform: rotate(90deg); }
+.bottom-left { bottom: 12px; left: 12px; transform: rotate(-90deg); }
+.bottom-right { bottom: 12px; right: 12px; transform: rotate(180deg); }
 
-.ornament {
+.small-ornament {
+  color: var(--red-light);
+  font-size: 25px;
+  letter-spacing: 9px;
+  margin: 14px 0;
+}
+
+.eyebrow {
+  font-family: 'Cinzel', serif;
   color: var(--gold);
-  letter-spacing: 8px;
-  font-size: 19px;
-  margin: 12px 0;
-  text-shadow: 0 0 10px #d8b45b50;
-}
-
-/* DUAS MÁSCARAS */
-
-.masks {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 13px;
-  margin: 4px 0 12px;
-  padding-left: 10px;
-}
-
-.mask {
-  width: 91px;
-  height: 65px;
-  filter: drop-shadow(0 0 8px #d8b45b40);
+  letter-spacing: 5px;
+  font-size: 12px;
+  margin-top: 15px;
 }
 
 h1 {
-  font-family: 'Cinzel', serif;
-  font-weight: 600;
-  font-size: clamp(25px, 5vw, 43px);
-  letter-spacing: 5px;
+  font-family: 'Great Vibes', cursive;
   color: var(--gold-light);
-  margin: 12px 0 3px;
-  text-shadow: 0 2px 12px #d8b45b55;
+  font-size: clamp(55px, 12vw, 88px);
+  font-weight: 400;
+  margin: 10px 0 0;
+  text-shadow: 0 0 18px #a87c36aa;
 }
 
 .subtitle {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(27px, 5vw, 39px);
-  color: var(--gold);
-  margin: 0 0 15px;
+  font-family: 'Cinzel', serif;
+  color: var(--red-light);
+  letter-spacing: 5px;
+  font-size: 14px;
+  margin: 0 0 18px;
+}
+
+.masks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 20px auto 22px;
+}
+
+.mask {
+  width: 105px;
+  height: 62px;
+  filter: drop-shadow(0 0 7px #b78b3a55);
+}
+
+.intro {
+  font-family: 'Cinzel', serif;
+  color: var(--gold-light);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  line-height: 1.8;
+  margin: 22px auto;
+  max-width: 500px;
 }
 
 .message {
-  max-width: 570px;
-  margin: 20px auto;
-  font-size: clamp(18px, 3vw, 22px);
+  font-size: 21px;
   line-height: 1.55;
-  color: #eee1c4;
+  color: #e9d39b;
+  max-width: 520px;
+  margin: 18px auto;
 }
 
-.highlight {
-  font-family: 'Great Vibes', cursive;
-  font-size: 31px;
-  color: var(--gold-light);
-  margin: 20px 0;
+.message strong {
+  color: var(--gold);
+  font-weight: 600;
 }
 
 .details {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
-  margin: 25px auto;
+  margin: 28px auto;
 }
 
 .detail {
-  min-width: 145px;
-  border: 1px solid #9d792f;
-  padding: 12px 18px;
-  background: linear-gradient(145deg, #171108, #080706);
-  box-shadow: inset 0 0 12px #d8b45b12;
+  border: 1px solid #9b742f;
+  background: linear-gradient(145deg, #1a1010, #090707);
+  padding: 13px 17px;
+  min-width: 135px;
+  color: var(--gold-light);
 }
 
-.detail strong {
+.detail b {
   display: block;
-  font-family: Cinzel, serif;
-  font-size: 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
   letter-spacing: 2px;
-  color: var(--gold);
-  margin-bottom: 5px;
+  color: var(--red-light);
+  margin-bottom: 7px;
 }
 
 .detail span {
-  font-size: 18px;
-  color: #f5e8c9;
+  font-size: 17px;
+  color: var(--gold-light);
+}
+
+.closing {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--gold-light);
+  margin: 24px auto 15px;
 }
 
 .signature {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(29px, 5vw, 39px);
-  color: var(--gold-light);
-  margin: 24px 0 8px;
-}
-
-.signature-name {
-  font-family: Cinzel, serif;
-  letter-spacing: 3px;
-  font-size: 13px;
+  font-size: 37px;
   color: var(--gold);
+  margin: 10px 0 20px;
 }
 
-button {
-  margin-top: 20px;
-  padding: 13px 25px;
-  background: linear-gradient(135deg, #d9b45d, #8b641e);
-  border: 1px solid #f6dfa0;
-  color: #100c06;
-  font-family: Cinzel, serif;
-  letter-spacing: 2px;
-  font-size: 12px;
+.xv-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 29px;
+  color: var(--gold);
+  letter-spacing: 5px;
+  border-top: 1px solid #9c742e;
+  display: inline-block;
+  padding: 12px 30px 0;
+}
+
+.confirm {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 13px 22px;
+  color: var(--gold-light);
+  background: linear-gradient(135deg, #751324, #3f0912);
+  border: 1px solid var(--gold);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+  font-size: 11px;
   cursor: pointer;
-  box-shadow: 0 0 15px #d8b45b45;
 }
 
-button:hover { filter: brightness(1.15); }
+.confirm:active {
+  transform: scale(.97);
+}
 
-@media(max-width: 480px) {
-  .paper { padding: 38px 18px; }
-  .mask { width: 78px; }
-  .details { gap: 8px; }
-  .detail { min-width: 125px; padding: 10px; }
-  .corner { font-size: 27px; }
+@media (max-width: 430px) {
+  .paper { padding: 42px 19px 38px; }
+  .message { font-size: 19px; }
+  .detail { min-width: 105px; padding: 11px; }
+  .mask { width: 92px; }
 }
 </style>
 </head>
 
 <body>
 
-<div id="opening" onclick="openInvitation()">
-  <div class="envelope"></div>
-  <div class="flap"></div>
-  <div class="seal">XV</div>
-  <div class="opening-text">TOQUE PARA ABRIR</div>
-</div>
+<section id="opening">
+  <div class="opening-title">UM CONVITE ESPECIAL</div>
 
-<main id="invitation">
-  <section class="paper">
+  <div class="envelope" id="envelope" onclick="openInvitation()">
+    <div class="envelope-bottom"></div>
+    <div class="envelope-inner"></div>
+    <div class="wax-seal">XV</div>
+  </div>
 
-    <span class="corner tl">❧</span>
-    <span class="corner tr">❧</span>
-    <span class="corner bl">❧</span>
-    <span class="corner br">❧</span>
+  <div class="opening-instruction">
+    TOQUE NO SELO PARA ABRIR
+  </div>
+</section>
 
-    <div class="ornament">✧ ━━━━━━━ ✧ ━━━━━━━ ✧</div>
+<section id="invitation">
+  <main class="paper">
+
+    <span class="corner top-left">❧</span>
+    <span class="corner top-right">❧</span>
+    <span class="corner bottom-left">❧</span>
+    <span class="corner bottom-right">❧</span>
+
+    <div class="eyebrow">COM ELEGÂNCIA E MISTÉRIO</div>
+
+    <div class="small-ornament">✦ ❧ ✦</div>
+
+    <h1>Meus 15 anos</h1>
+    <div class="subtitle">UMA NOITE DE REALEZA</div>
 
     <div class="masks">
 
       <!-- Máscara preta e dourada -->
-      <svg class="mask" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 23 Q35 0 72 20 Q110 0 142 23 L130 63 Q110 86 76 70 Q42 88 20 62 Z"
-          fill="#080808" stroke="#d8b45b" stroke-width="3"/>
-        <path d="M12 25 Q40 12 69 29 L55 43 Q35 31 19 47 Z"
-          fill="#080808" stroke="#e8c66d" stroke-width="2"/>
-        <path d="M138 25 Q110 12 81 29 L95 43 Q115 31 131 47 Z"
-          fill="#080808" stroke="#e8c66d" stroke-width="2"/>
-        <path d="M72 20 L76 70 M25 58 Q45 78 70 67 M127 58 Q105 78 82 67"
-          fill="none" stroke="#d8b45b" stroke-width="2"/>
-        <circle cx="75" cy="18" r="5" fill="#f5dda0"/>
-        <path d="M75 7 L80 17 L75 27 L70 17 Z" fill="#d8b45b"/>
-        <path d="M34 15 L39 23 L34 31 L29 23 Z M116 15 L121 23 L116 31 L111 23 Z"
-          fill="#d8b45b"/>
+      <svg class="mask" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 48 Q45 4 90 38 Q135 4 172 48 Q145 88 90 76 Q35 88 8 48Z"
+          fill="#090707" stroke="#d8b45b" stroke-width="4"/>
+        <path d="M20 48 Q48 28 73 48 Q50 70 20 48Z" fill="#e8c76e"/>
+        <path d="M160 48 Q132 28 107 48 Q130 70 160 48Z" fill="#e8c76e"/>
+        <path d="M90 37 L81 57 L90 72 L99 57Z" fill="#8d1024" stroke="#d8b45b" stroke-width="2"/>
+        <path d="M35 25 Q90 -2 145 25" fill="none" stroke="#d8b45b" stroke-width="2"/>
       </svg>
 
       <!-- Máscara branca e dourada -->
-      <svg class="mask" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 23 Q35 0 72 20 Q110 0 142 23 L130 63 Q110 86 76 70 Q42 88 20 62 Z"
-          fill="#eee5cf" stroke="#d8b45b" stroke-width="3"/>
-        <path d="M12 25 Q40 12 69 29 L55 43 Q35 31 19 47 Z"
-          fill="#080808" stroke="#b58a34" stroke-width="2"/>
-        <path d="M138 25 Q110 12 81 29 L95 43 Q115 31 131 47 Z"
-          fill="#080808" stroke="#b58a34" stroke-width="2"/>
-        <path d="M72 20 L76 70 M25 58 Q45 78 70 67 M127 58 Q105 78 82 67"
-          fill="none" stroke="#b58a34" stroke-width="2"/>
-        <circle cx="75" cy="18" r="5" fill="#d8b45b"/>
-        <path d="M75 7 L80 17 L75 27 L70 17 Z" fill="#d8b45b"/>
-        <path d="M34 15 L39 23 L34 31 L29 23 Z M116 15 L121 23 L116 31 L111 23 Z"
-          fill="#b58a34"/>
+      <svg class="mask" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 48 Q45 4 90 38 Q135 4 172 48 Q145 88 90 76 Q35 88 8 48Z"
+          fill="#eee8dc" stroke="#d8b45b" stroke-width="4"/>
+        <path d="M20 48 Q48 28 73 48 Q50 70 20 48Z" fill="#b98d39"/>
+        <path d="M160 48 Q132 28 107 48 Q130 70 160 48Z" fill="#b98d39"/>
+        <path d="M90 37 L81 57 L90 72 L99 57Z" fill="#8d1024" stroke="#d8b45b" stroke-width="2"/>
+        <path d="M35 25 Q90 -2 145 25" fill="none" stroke="#d8b45b" stroke-width="2"/>
       </svg>
 
     </div>
 
-    <div class="ornament">✦ ❧ ✦ ❧ ✦</div>
+    <div class="small-ornament">❧ ✦ ❧</div>
 
-    <h1>MEUS 15 ANOS</h1>
-    <p class="subtitle">Uma noite de realeza</p>
-
-    <div class="ornament">━━━━━━ ❖ ━━━━━━</div>
-
-    <p class="message">
+    <p class="intro">
       Prepare-se para uma noite onde o mistério encontra a elegância…
     </p>
 
     <p class="message">
-      Por trás de cada máscara existe um segredo, e por trás desta noite
-      existe um sonho: celebrar meus 15 anos ao lado de pessoas especiais.
+      Por trás de cada máscara existe um segredo, e por trás desta noite existe um sonho:
+      <strong>celebrar meus 15 anos</strong> ao lado de pessoas especiais.
     </p>
 
     <p class="message">
@@ -393,50 +457,67 @@ button:hover { filter: brightness(1.15); }
       surpresas e momentos inesquecíveis.
     </p>
 
-    <p class="highlight">
-      As máscaras estão prontas. E você, está preparado(a) para essa noite?
-    </p>
+    <div class="small-ornament">✦ ❧ ✦</div>
 
-    <div class="ornament">✧ ━━━━━━━ ❖ ━━━━━━━ ✧</div>
+    <p class="closing">
+      As máscaras estão prontas.<br>
+      E você, está preparado(a) para essa noite?
+    </p>
 
     <div class="details">
       <div class="detail">
-        <strong>DATA</strong>
+        <b>DATA</b>
         <span>A DEFINIR</span>
       </div>
+
       <div class="detail">
-        <strong>HORÁRIO</strong>
+        <b>HORÁRIO</b>
         <span>A DEFINIR</span>
       </div>
+
       <div class="detail">
-        <strong>LOCAL</strong>
+        <b>LOCAL</b>
         <span>A DEFINIR</span>
       </div>
     </div>
 
-    <div class="ornament">❧ ✦ ❧</div>
+    <div class="small-ornament">❧ ✦ ❧</div>
 
-    <p class="signature">Um beijo da sua debutante</p>
-    <p class="signature-name">XV</p>
+    <div class="signature">Um beijo da sua debutante</div>
 
-    <button onclick="alert('Em breve, confirmação de presença!')">
+    <div class="xv-mark">XV</div>
+
+    <br>
+
+    <button class="confirm" onclick="alert('Em breve, confirmação de presença!')">
       CONFIRMAR PRESENÇA
     </button>
 
-    <div class="ornament">✧ ━━━━━━━ ✧ ━━━━━━━ ✧</div>
-
-  </section>
-</main>
+  </main>
+</section>
 
 <script>
 function openInvitation() {
-  const envelope = document.getElementById('opening');
+  const opening = document.getElementById('opening');
+  const envelope = document.getElementById('envelope');
   const invitation = document.getElementById('invitation');
 
   envelope.classList.add('open');
 
   setTimeout(() => {
-    invitation.classList.add('show');
+    opening.style.opacity = '0';
+
+    setTimeout(() => {
+      opening.style.display = 'none';
+      invitation.style.display = 'block';
+
+      requestAnimationFrame(() => {
+        invitation.classList.add('show');
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 700);
+
   }, 650);
 }
 </script>
