@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XV da Mary | The Royal Masquerade</title>
+<title>XV da Mary | Baile de Máscaras</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
@@ -24,8 +24,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse at top, #57303a, #1b0b12 75%);
+  background: radial-gradient(ellipse at top, #57303a, #1b0b12 75%);
   color: var(--marfim);
   font-family: 'Cormorant Garamond', serif;
 }
@@ -53,6 +52,7 @@ body {
 .envelope-base {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
     radial-gradient(circle at 20% 20%, #fff7df55, transparent 40%),
     linear-gradient(135deg, #e9d7b6, #c8ad82);
@@ -78,27 +78,33 @@ body {
   font-size: 24px;
 }
 
+/* TEXTO NA FRENTE DA ABA */
+
 .envelope-text {
   position: absolute;
-  top: 75px;
+  top: 65px;
+  left: 0;
   width: 100%;
   text-align: center;
   color: #553b2b;
   font-family: 'Great Vibes', cursive;
   font-size: 38px;
-  z-index: 2;
+  z-index: 6;
+  pointer-events: none;
 }
 
 .envelope-sub {
   position: absolute;
-  top: 125px;
+  top: 115px;
+  left: 0;
   width: 100%;
   text-align: center;
   color: #745332;
   font-family: 'Playfair Display', serif;
   font-size: 10px;
   letter-spacing: 4px;
-  z-index: 2;
+  z-index: 6;
+  pointer-events: none;
 }
 
 .aba {
@@ -115,19 +121,18 @@ body {
 .lacre {
   position: absolute;
   left: 50%;
-  top: 48%;
+  top: 78%;
   transform: translate(-50%, -50%);
   width: 66px;
   height: 66px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background:
-    radial-gradient(circle at 35% 30%, #a94b58, #65192b 65%, #3c0d1b);
+  background: radial-gradient(circle at 35% 30%, #a94b58, #65192b 65%, #3c0d1b);
   border: 3px double #c6a36c;
   color: #e8cb91;
   font-size: 27px;
-  z-index: 5;
+  z-index: 7;
   box-shadow: 0 4px 10px #0006;
   transition: opacity .5s;
 }
@@ -159,8 +164,14 @@ body {
 }
 
 @keyframes aparecer {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cartao {
@@ -215,7 +226,7 @@ body {
 .topo {
   font-family: 'Playfair Display', serif;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   color: var(--vinho);
   font-size: 12px;
 }
@@ -243,7 +254,7 @@ body {
   margin: 20px 0;
 }
 
-/* MÁSCARAS NOS CANTOS */
+/* DUAS MÁSCARAS NOS CANTOS */
 
 .mascaras {
   display: flex;
@@ -269,6 +280,8 @@ body {
   height: 100%;
   overflow: visible;
 }
+
+/* TEXTO DO CONVITE */
 
 .texto-convite {
   max-width: 470px;
@@ -390,6 +403,10 @@ body {
   .detalhes {
     gap: 9px;
   }
+
+  .envelope-text {
+    font-size: 34px;
+  }
 }
 </style>
 </head>
@@ -398,12 +415,16 @@ body {
 
 <section id="entrada">
   <div class="envelope" id="envelope" onclick="abrirConvite()">
-    <div class="envelope-base">
-      <div class="envelope-text">XV da Mary</div>
-      <div class="envelope-sub">UM CONVITE ESPECIAL</div>
-    </div>
+
+    <div class="envelope-base"></div>
+
+    <div class="envelope-text">XV da Mary</div>
+    <div class="envelope-sub">UM CONVITE ESPECIAL</div>
+
     <div class="aba"></div>
+
     <div class="lacre">✦</div>
+
     <div class="instrucao">TOQUE PARA ABRIR</div>
   </div>
 </section>
@@ -412,12 +433,13 @@ body {
   <div class="cartao">
     <div class="moldura">
 
-      <div class="topo">Um convite à altura de uma noite inesquecível</div>
+      <div class="topo">Uma noite de mistério e elegância</div>
 
       <div class="ornamento">✦ ❧ ✦</div>
 
       <h1 class="chamada">The Royal Masquerade</h1>
-      <div class="subtitulo">Baile de máscaras · Mystic Falls</div>
+
+      <div class="subtitulo">Baile de máscaras</div>
 
       <div class="linha"></div>
 
@@ -455,7 +477,9 @@ body {
 
       <div class="linha"></div>
 
-      <div class="destaque">Você está cordialmente convidado(a) para celebrar</div>
+      <div class="destaque">
+        Você está cordialmente convidado(a) para celebrar
+      </div>
 
       <div class="nome">XV da Mary</div>
 
@@ -466,8 +490,10 @@ body {
         E por trás desta noite existe um sonho:
         celebrar meus quinze anos ao lado de pessoas especiais.
         <br><br>
-        Prepare-se para uma noite de <strong>mistério, elegância e encanto</strong>,
-        onde cada detalhe guarda uma surpresa e cada momento merece ser lembrado.
+        Prepare-se para uma noite de
+        <strong>mistério, elegância e encanto</strong>,
+        onde cada detalhe guarda uma surpresa
+        e cada momento merece ser lembrado.
       </div>
 
       <div class="linha"></div>
@@ -475,29 +501,35 @@ body {
       <div class="destaque">Detalhes da celebração</div>
 
       <div class="detalhes">
+
         <div class="detalhe">
           <span>Data</span>
           <strong>A DEFINIR</strong>
         </div>
+
         <div class="detalhe">
           <span>Horário</span>
           <strong>A DEFINIR</strong>
         </div>
+
         <div class="detalhe" style="grid-column: 1 / -1;">
           <span>Local</span>
           <strong>A DEFINIR</strong>
         </div>
+
       </div>
 
       <div class="frase-final">
-        "As máscaras estão prontas. E você, está preparado(a) para uma noite inesquecível?"
+        "As máscaras estão prontas. E você, está preparado(a)
+        para uma noite inesquecível?"
       </div>
 
       <div class="assinatura">Com carinho, Mary</div>
 
       <a class="confirmar"
          href="https://wa.me/5521983667385?text=Ol%C3%A1!%20Estou%20passando%20para%20confirmar%20minha%20presen%C3%A7a%20nos%2015%20anos%20da%20Mary."
-         target="_blank">
+         target="_blank"
+         rel="noopener">
         Confirmar presença
       </a>
 
