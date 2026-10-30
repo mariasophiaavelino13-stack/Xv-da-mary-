@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +19,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-family: 'Cinzel', serif;
-  background:
-    radial-gradient(ellipse at center, #d8c39b 0%, #ad9169 65%, #725638 100%);
+  background: #000000;
   color: #382817;
 }
 
@@ -289,15 +290,14 @@ body::before {
 .mascara-grande {
   width: 145px;
   height: 95px;
-  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, .65));
+  filter: drop-shadow(0 4px 3px rgba(64, 39, 13, .35));
 }
 
 .mascara-pequena {
   position: absolute;
   width: 65px;
   height: 48px;
-  opacity: .95;
-  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .65));
+  opacity: .85;
 }
 
 .mascara-pequena.esquerda {
@@ -335,16 +335,16 @@ body::before {
 h1 {
   font-family: 'Cinzel', serif;
   font-size: clamp(29px, 5vw, 48px);
-  color: #e1bd78;
+  color: #57391d;
   margin: 5px 0 12px;
   letter-spacing: 4px;
-  text-shadow: 0 1px 2px #5e421f, 0 0 12px rgba(225, 189, 120, .25);
+  text-shadow: 0 1px 0 #f8e8bf;
 }
 
 .subtitulo {
   font-family: 'Allura', cursive;
   font-size: clamp(29px, 4vw, 39px);
-  color: #d8b77c;
+  color: #76502b;
   margin: 0 0 22px;
 }
 
@@ -354,13 +354,13 @@ h1 {
   line-height: 1.25;
   max-width: 790px;
   margin: 15px auto;
-  color: #d9bd8a;
+  color: #49321e;
 }
 
 .frase {
   font-family: 'Allura', cursive;
   font-size: clamp(30px, 4vw, 40px);
-  color: #e4c58c;
+  color: #70451f;
   margin: 22px auto;
 }
 
@@ -407,7 +407,7 @@ h1 {
   font-size: 34px;
   line-height: 1.15;
   margin-top: 24px;
-  color: #e0bd82;
+  color: #684321;
 }
 
 .assinatura .assinado {
@@ -514,145 +514,37 @@ h1 {
 
     <div class="decoracao-mascaras">
 
-      <!-- MÁSCARA EXTREMA ESQUERDA -->
       <svg class="mascara-pequena extrema-esquerda" viewBox="0 0 180 100" aria-hidden="true">
-        <defs>
-          <linearGradient id="ouro1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#fff0bd"/>
-            <stop offset="35%" stop-color="#d5a94f"/>
-            <stop offset="70%" stop-color="#8b5d24"/>
-            <stop offset="100%" stop-color="#f4d58b"/>
-          </linearGradient>
-        </defs>
-        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="url(#ouro1)" stroke="#68451e" stroke-width="5"/>
-        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#090806" stroke="#fff0bd" stroke-width="2"/>
-        <path d="M90 28 Q84 48 90 72" stroke="#fff0bd" stroke-width="3" fill="none"/>
-        <path d="M20 30 Q40 10 62 25 M160 30 Q140 10 118 25" stroke="#fff0bd" stroke-width="2" fill="none"/>
-        <path d="M50 65 Q65 55 76 66 M130 65 Q115 55 104 66" stroke="#f8dda0" stroke-width="2" fill="none"/>
-        <circle cx="90" cy="19" r="5" fill="#fff0bd" stroke="#9c6c2d" stroke-width="2"/>
+        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="#765020" stroke="#4c321b" stroke-width="5"/>
+        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#e9d19b"/>
+        <path d="M90 28 L90 72" stroke="#d7b46f" stroke-width="4"/>
       </svg>
 
-      <!-- MÁSCARA ESQUERDA -->
       <svg class="mascara-pequena esquerda" viewBox="0 0 180 100" aria-hidden="true">
-        <defs>
-          <linearGradient id="ouro2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#fff5d3"/>
-            <stop offset="30%" stop-color="#e5bd69"/>
-            <stop offset="65%" stop-color="#966325"/>
-            <stop offset="100%" stop-color="#f6dda0"/>
-          </linearGradient>
-        </defs>
-        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="url(#ouro2)" stroke="#68451e" stroke-width="5"/>
-        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#080705" stroke="#fff0bd" stroke-width="2"/>
-        <path d="M90 28 Q84 48 90 72" stroke="#fff0bd" stroke-width="3" fill="none"/>
-        <path d="M18 32 Q40 12 63 25 M162 32 Q140 12 117 25" stroke="#fff0bd" stroke-width="2" fill="none"/>
-        <path d="M42 65 Q57 54 72 66 M138 65 Q123 54 108 66" stroke="#f8dda0" stroke-width="2" fill="none"/>
-        <circle cx="90" cy="18" r="5" fill="#fff0bd" stroke="#9c6c2d" stroke-width="2"/>
-        <circle cx="48" cy="67" r="2.5" fill="#fff0bd"/>
-        <circle cx="132" cy="67" r="2.5" fill="#fff0bd"/>
+        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="#9a7139" stroke="#60421f" stroke-width="5"/>
+        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#f2dfb4"/>
+        <path d="M90 28 L90 72" stroke="#f0d18e" stroke-width="4"/>
       </svg>
 
-      <!-- MÁSCARA CENTRAL -->
-      <svg class="mascara-grande" viewBox="0 0 180 100" aria-label="Máscara veneziana dourada">
-        <defs>
-          <linearGradient id="ouroCentral" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#fff5d5"/>
-            <stop offset="18%" stop-color="#e9c879"/>
-            <stop offset="42%" stop-color="#a8732c"/>
-            <stop offset="65%" stop-color="#f5d995"/>
-            <stop offset="100%" stop-color="#8b5b22"/>
-          </linearGradient>
-
-          <linearGradient id="brilhoCentral" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#fff7db"/>
-            <stop offset="100%" stop-color="#b17b35"/>
-          </linearGradient>
-
-          <filter id="sombraCentral" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2"/>
-          </filter>
-        </defs>
-
-        <path d="M8 34 Q43 2 90 26 Q137 2 172 34 Q155 88 108 72 Q90 64 72 72 Q25 88 8 34Z"
-          fill="#000000" opacity=".65" filter="url(#sombraCentral)"/>
-
-        <path d="M8 34 Q43 2 90 26 Q137 2 172 34 Q155 88 108 72 Q90 64 72 72 Q25 88 8 34Z"
-          fill="url(#ouroCentral)" stroke="#68451e" stroke-width="3.5"/>
-
-        <path d="M15 35 Q45 9 88 29 Q130 9 165 35 Q150 80 108 67 Q90 60 72 67 Q30 80 15 35Z"
-          fill="none" stroke="#fff0bd" stroke-width="1.5"/>
-
-        <path d="M27 38 Q52 20 78 42 Q61 65 35 54Z M102 42 Q128 20 153 38 L145 54 Q119 65 102 42Z"
-          fill="#080705" stroke="#fff0bd" stroke-width="2.5"/>
-
-        <path d="M31 37 Q52 24 75 42 M105 42 Q128 24 149 37"
-          fill="none" stroke="#fff9e6" stroke-width="1.5"/>
-
-        <path d="M90 26 Q83 48 90 75"
-          fill="none" stroke="url(#brilhoCentral)" stroke-width="4"/>
-
-        <path d="M8 34 Q-2 15 8 4 M172 34 Q182 15 172 4"
-          fill="none" stroke="#d9ae58" stroke-width="3"/>
-
-        <path d="M18 29 Q36 7 62 22 Q48 21 37 35 M162 29 Q144 7 118 22 Q132 21 143 35"
-          fill="none" stroke="#fff0bd" stroke-width="2"/>
-
-        <path d="M90 13 L97 21 L90 30 L83 21Z"
-          fill="#fff1c6" stroke="#a87832" stroke-width="1.5"/>
-
-        <path d="M42 66 Q52 56 65 64 M138 66 Q128 56 115 64"
-          fill="none" stroke="#fff0bd" stroke-width="2"/>
-
-        <circle cx="48" cy="67" r="3" fill="#fff0bd" stroke="#a87832" stroke-width="1"/>
-        <circle cx="132" cy="67" r="3" fill="#fff0bd" stroke="#a87832" stroke-width="1"/>
-        <circle cx="90" cy="83" r="3" fill="#fff0bd" stroke="#a87832" stroke-width="1"/>
-
-        <path d="M30 25 Q43 14 56 22 M150 25 Q137 14 124 22"
-          fill="none" stroke="#fff9e6" stroke-width="1.5"/>
-
-        <path d="M22 45 Q30 58 43 59 M158 45 Q150 58 137 59"
-          fill="none" stroke="#d7ad60" stroke-width="2"/>
-
-        <path d="M65 77 Q78 84 90 88 Q102 84 115 77"
-          fill="none" stroke="#d9ae58" stroke-width="1.5"/>
+      <svg class="mascara-grande" viewBox="0 0 180 100" aria-label="Máscara de baile dourada">
+        <path d="M8 34 Q43 2 90 26 Q137 2 172 34 Q155 88 108 72 Q90 64 72 72 Q25 88 8 34Z" fill="#9b7136" stroke="#5d3e1d" stroke-width="5"/>
+        <path d="M27 38 Q52 20 78 42 Q61 65 35 54Z M102 42 Q128 20 153 38 L145 54 Q119 65 102 42Z" fill="#f6e5bc" stroke="#d0ac69" stroke-width="2"/>
+        <path d="M90 26 Q83 48 90 75" fill="none" stroke="#f2d18b" stroke-width="4"/>
+        <path d="M8 34 Q-2 15 8 4 M172 34 Q182 15 172 4" fill="none" stroke="#8b622e" stroke-width="3"/>
+        <circle cx="90" cy="18" r="5" fill="#f3d18b"/>
+        <path d="M22 20 L13 12 M158 20 L167 12" stroke="#e6c17b" stroke-width="3"/>
       </svg>
 
-      <!-- MÁSCARA DIREITA -->
       <svg class="mascara-pequena direita" viewBox="0 0 180 100" aria-hidden="true">
-        <defs>
-          <linearGradient id="ouro3" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#fff5d3"/>
-            <stop offset="30%" stop-color="#e5bd69"/>
-            <stop offset="65%" stop-color="#966325"/>
-            <stop offset="100%" stop-color="#f6dda0"/>
-          </linearGradient>
-        </defs>
-        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="url(#ouro3)" stroke="#68451e" stroke-width="5"/>
-        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#080705" stroke="#fff0bd" stroke-width="2"/>
-        <path d="M90 28 Q84 48 90 72" stroke="#fff0bd" stroke-width="3" fill="none"/>
-        <path d="M18 32 Q40 12 63 25 M162 32 Q140 12 117 25" stroke="#fff0bd" stroke-width="2" fill="none"/>
-        <path d="M42 65 Q57 54 72 66 M138 65 Q123 54 108 66" stroke="#f8dda0" stroke-width="2" fill="none"/>
-        <circle cx="90" cy="18" r="5" fill="#fff0bd" stroke="#9c6c2d" stroke-width="2"/>
-        <circle cx="48" cy="67" r="2.5" fill="#fff0bd"/>
-        <circle cx="132" cy="67" r="2.5" fill="#fff0bd"/>
+        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="#9a7139" stroke="#60421f" stroke-width="5"/>
+        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#f2dfb4"/>
+        <path d="M90 28 L90 72" stroke="#f0d18e" stroke-width="4"/>
       </svg>
 
-      <!-- MÁSCARA EXTREMA DIREITA -->
       <svg class="mascara-pequena extrema-direita" viewBox="0 0 180 100" aria-hidden="true">
-        <defs>
-          <linearGradient id="ouro4" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#fff0bd"/>
-            <stop offset="35%" stop-color="#d5a94f"/>
-            <stop offset="70%" stop-color="#8b5d24"/>
-            <stop offset="100%" stop-color="#f4d58b"/>
-          </linearGradient>
-        </defs>
-        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="url(#ouro4)" stroke="#68451e" stroke-width="5"/>
-        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#090806" stroke="#fff0bd" stroke-width="2"/>
-        <path d="M90 28 Q84 48 90 72" stroke="#fff0bd" stroke-width="3" fill="none"/>
-        <path d="M20 30 Q40 10 62 25 M160 30 Q140 10 118 25" stroke="#fff0bd" stroke-width="2" fill="none"/>
-        <path d="M50 65 Q65 55 76 66 M130 65 Q115 55 104 66" stroke="#f8dda0" stroke-width="2" fill="none"/>
-        <circle cx="90" cy="19" r="5" fill="#fff0bd" stroke="#9c6c2d" stroke-width="2"/>
+        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="#765020" stroke="#4c321b" stroke-width="5"/>
+        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#e9d19b"/>
+        <path d="M90 28 L90 72" stroke="#d7b46f" stroke-width="4"/>
       </svg>
 
     </div>
@@ -734,5 +626,4 @@ function abrirConvite() {
 </script>
 
 </body>
-  </html>
-      
+</html>
