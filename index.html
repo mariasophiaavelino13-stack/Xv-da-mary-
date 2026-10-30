@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +18,7 @@ body {
   overflow-x: hidden;
   font-family: 'Cinzel', serif;
   background: #000000;
-  color: #382817;
+  color: #f4dfad;
 }
 
 /* FUNDO */
@@ -29,9 +27,9 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: .22;
+  opacity: .12;
   background-image:
-    radial-gradient(#4d321c 0.7px, transparent 0.7px);
+    radial-gradient(#c9a66b 0.7px, transparent 0.7px);
   background-size: 8px 8px;
 }
 
@@ -290,14 +288,15 @@ body::before {
 .mascara-grande {
   width: 145px;
   height: 95px;
-  filter: drop-shadow(0 4px 3px rgba(64, 39, 13, .35));
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, .8));
 }
 
 .mascara-pequena {
   position: absolute;
   width: 65px;
   height: 48px;
-  opacity: .85;
+  opacity: .95;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .8));
 }
 
 .mascara-pequena.esquerda {
@@ -325,7 +324,7 @@ body::before {
 }
 
 .enfeites-topo {
-  color: #95692e;
+  color: #e2bd75;
   font-size: 22px;
   letter-spacing: 12px;
   margin: 4px 0 18px;
@@ -335,17 +334,20 @@ body::before {
 h1 {
   font-family: 'Cinzel', serif;
   font-size: clamp(29px, 5vw, 48px);
-  color: #57391d;
+  color: #f5d995;
   margin: 5px 0 12px;
   letter-spacing: 4px;
-  text-shadow: 0 1px 0 #f8e8bf;
+  text-shadow:
+    0 0 5px rgba(255, 222, 157, .65),
+    0 0 14px rgba(218, 171, 91, .35);
 }
 
 .subtitulo {
   font-family: 'Allura', cursive;
   font-size: clamp(29px, 4vw, 39px);
-  color: #76502b;
+  color: #f0d49e;
   margin: 0 0 22px;
+  text-shadow: 0 0 7px rgba(240, 212, 158, .3);
 }
 
 .texto {
@@ -354,18 +356,20 @@ h1 {
   line-height: 1.25;
   max-width: 790px;
   margin: 15px auto;
-  color: #49321e;
+  color: #f2e1bd;
+  text-shadow: 0 0 6px rgba(242, 225, 189, .25);
 }
 
 .frase {
   font-family: 'Allura', cursive;
   font-size: clamp(30px, 4vw, 40px);
-  color: #70451f;
+  color: #f4d18c;
   margin: 22px auto;
+  text-shadow: 0 0 8px rgba(244, 209, 140, .4);
 }
 
 .detalhe {
-  color: #9a6c32;
+  color: #e4bd78;
   font-size: 24px;
   letter-spacing: 9px;
   margin: 18px 0;
@@ -383,8 +387,8 @@ h1 {
 .info {
   min-width: 190px;
   padding: 15px 18px;
-  border: 1px solid #a47b43;
-  background: rgba(255, 239, 196, .3);
+  border: 1px solid #c49a58;
+  background: rgba(255, 239, 196, .12);
   box-shadow: inset 0 0 10px rgba(133, 87, 36, .12);
 }
 
@@ -392,14 +396,14 @@ h1 {
   display: block;
   font-family: 'Cinzel', serif;
   font-size: 15px;
-  color: #70471f;
+  color: #f2d18f;
   margin-bottom: 7px;
 }
 
 .info span {
   font-family: 'Cinzel', serif;
   font-size: 14px;
-  color: #51371e;
+  color: #fff0d0;
 }
 
 .assinatura {
@@ -407,7 +411,7 @@ h1 {
   font-size: 34px;
   line-height: 1.15;
   margin-top: 24px;
-  color: #684321;
+  color: #f0d49e;
 }
 
 .assinatura .assinado {
@@ -415,6 +419,7 @@ h1 {
   font-size: 13px;
   letter-spacing: 2px;
   margin-top: 10px;
+  color: #e8c98e;
 }
 
 .botao {
@@ -515,36 +520,109 @@ h1 {
     <div class="decoracao-mascaras">
 
       <svg class="mascara-pequena extrema-esquerda" viewBox="0 0 180 100" aria-hidden="true">
-        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="#765020" stroke="#4c321b" stroke-width="5"/>
-        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#e9d19b"/>
-        <path d="M90 28 L90 72" stroke="#d7b46f" stroke-width="4"/>
+        <defs>
+          <linearGradient id="ouro1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff0bd"/>
+            <stop offset="35%" stop-color="#d6a94e"/>
+            <stop offset="70%" stop-color="#8b5a20"/>
+            <stop offset="100%" stop-color="#f4d58d"/>
+          </linearGradient>
+        </defs>
+        <path d="M8 36 Q25 14 52 20 Q73 20 90 30 Q107 20 128 20 Q155 14 172 36 Q158 57 143 70 Q119 86 90 69 Q61 86 37 70 Q22 57 8 36Z" fill="url(#ouro1)" stroke="#f0d18a" stroke-width="3"/>
+        <path d="M25 39 Q48 24 77 41 Q65 60 43 54 Q30 51 25 39Z M103 41 Q132 24 155 39 Q150 51 137 54 Q115 60 103 41Z" fill="#080706" stroke="#6e481b" stroke-width="2"/>
+        <path d="M90 30 Q82 48 90 69" fill="none" stroke="#fff0c4" stroke-width="3"/>
+        <path d="M12 34 Q2 18 8 8 M168 34 Q178 18 172 8" fill="none" stroke="#e8c477" stroke-width="3"/>
+        <circle cx="90" cy="21" r="4" fill="#fff0bd"/>
       </svg>
 
       <svg class="mascara-pequena esquerda" viewBox="0 0 180 100" aria-hidden="true">
-        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="#9a7139" stroke="#60421f" stroke-width="5"/>
-        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#f2dfb4"/>
-        <path d="M90 28 L90 72" stroke="#f0d18e" stroke-width="4"/>
+        <defs>
+          <linearGradient id="ouro2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff2c9"/>
+            <stop offset="40%" stop-color="#d5a64e"/>
+            <stop offset="75%" stop-color="#956020"/>
+            <stop offset="100%" stop-color="#f7dfa1"/>
+          </linearGradient>
+        </defs>
+        <path d="M8 36 Q25 14 52 20 Q73 20 90 30 Q107 20 128 20 Q155 14 172 36 Q158 57 143 70 Q119 86 90 69 Q61 86 37 70 Q22 57 8 36Z" fill="url(#ouro2)" stroke="#f8dda0" stroke-width="3"/>
+        <path d="M25 39 Q48 24 77 41 Q65 60 43 54 Q30 51 25 39Z M103 41 Q132 24 155 39 Q150 51 137 54 Q115 60 103 41Z" fill="#090807" stroke="#76501f" stroke-width="2"/>
+        <path d="M90 30 Q82 48 90 69" fill="none" stroke="#fff0c4" stroke-width="3"/>
+        <path d="M20 27 L35 18 M145 18 L160 27" stroke="#fff0bd" stroke-width="2"/>
+        <circle cx="90" cy="21" r="4" fill="#fff0bd"/>
       </svg>
 
       <svg class="mascara-grande" viewBox="0 0 180 100" aria-label="Máscara de baile dourada">
-        <path d="M8 34 Q43 2 90 26 Q137 2 172 34 Q155 88 108 72 Q90 64 72 72 Q25 88 8 34Z" fill="#9b7136" stroke="#5d3e1d" stroke-width="5"/>
-        <path d="M27 38 Q52 20 78 42 Q61 65 35 54Z M102 42 Q128 20 153 38 L145 54 Q119 65 102 42Z" fill="#f6e5bc" stroke="#d0ac69" stroke-width="2"/>
-        <path d="M90 26 Q83 48 90 75" fill="none" stroke="#f2d18b" stroke-width="4"/>
-        <path d="M8 34 Q-2 15 8 4 M172 34 Q182 15 172 4" fill="none" stroke="#8b622e" stroke-width="3"/>
-        <circle cx="90" cy="18" r="5" fill="#f3d18b"/>
-        <path d="M22 20 L13 12 M158 20 L167 12" stroke="#e6c17b" stroke-width="3"/>
+        <defs>
+          <linearGradient id="ouroCentral" x1="0" y1="0" x2="0.9" y2="1">
+            <stop offset="0%" stop-color="#fff4d1"/>
+            <stop offset="20%" stop-color="#e8c477"/>
+            <stop offset="48%" stop-color="#a66e27"/>
+            <stop offset="72%" stop-color="#f4d68f"/>
+            <stop offset="100%" stop-color="#81501b"/>
+          </linearGradient>
+          <linearGradient id="brilhoCentral" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#fff0bf"/>
+            <stop offset="50%" stop-color="#b77d2b"/>
+            <stop offset="100%" stop-color="#fff0bf"/>
+          </linearGradient>
+        </defs>
+
+        <path d="M7 37 Q22 12 53 18 Q73 19 90 29 Q107 19 127 18 Q158 12 173 37 Q159 61 143 75 Q117 91 90 72 Q63 91 37 75 Q21 61 7 37Z"
+          fill="url(#ouroCentral)" stroke="#f7dda0" stroke-width="3"/>
+
+        <path d="M20 38 Q46 19 78 40 Q68 63 43 57 Q27 53 20 38Z"
+          fill="#050505" stroke="#f1d18a" stroke-width="2.5"/>
+
+        <path d="M102 40 Q134 19 160 38 Q153 53 137 57 Q112 63 102 40Z"
+          fill="#050505" stroke="#f1d18a" stroke-width="2.5"/>
+
+        <path d="M90 29 Q80 49 90 73" fill="none" stroke="#fff0c4" stroke-width="3"/>
+
+        <path d="M8 37 Q-1 20 8 7 M172 37 Q181 20 172 7"
+          fill="none" stroke="url(#brilhoCentral)" stroke-width="3"/>
+
+        <path d="M24 24 Q35 12 49 15 M131 15 Q145 12 156 24"
+          fill="none" stroke="#fff1c5" stroke-width="2"/>
+
+        <path d="M31 65 Q47 78 68 69 M112 69 Q133 78 149 65"
+          fill="none" stroke="#81501b" stroke-width="2"/>
+
+        <path d="M90 15 L95 22 L90 28 L85 22Z" fill="#fff0c4" stroke="#9d6d29" stroke-width="1.5"/>
+        <circle cx="90" cy="22" r="2" fill="#fff"/>
+        <circle cx="39" cy="22" r="2.5" fill="#fff0c4"/>
+        <circle cx="141" cy="22" r="2.5" fill="#fff0c4"/>
       </svg>
 
       <svg class="mascara-pequena direita" viewBox="0 0 180 100" aria-hidden="true">
-        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="#9a7139" stroke="#60421f" stroke-width="5"/>
-        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#f2dfb4"/>
-        <path d="M90 28 L90 72" stroke="#f0d18e" stroke-width="4"/>
+        <defs>
+          <linearGradient id="ouro3" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff2c9"/>
+            <stop offset="40%" stop-color="#d5a64e"/>
+            <stop offset="75%" stop-color="#956020"/>
+            <stop offset="100%" stop-color="#f7dfa1"/>
+          </linearGradient>
+        </defs>
+        <path d="M8 36 Q25 14 52 20 Q73 20 90 30 Q107 20 128 20 Q155 14 172 36 Q158 57 143 70 Q119 86 90 69 Q61 86 37 70 Q22 57 8 36Z" fill="url(#ouro3)" stroke="#f8dda0" stroke-width="3"/>
+        <path d="M25 39 Q48 24 77 41 Q65 60 43 54 Q30 51 25 39Z M103 41 Q132 24 155 39 Q150 51 137 54 Q115 60 103 41Z" fill="#090807" stroke="#76501f" stroke-width="2"/>
+        <path d="M90 30 Q82 48 90 69" fill="none" stroke="#fff0c4" stroke-width="3"/>
+        <path d="M20 27 L35 18 M145 18 L160 27" stroke="#fff0bd" stroke-width="2"/>
+        <circle cx="90" cy="21" r="4" fill="#fff0bd"/>
       </svg>
 
       <svg class="mascara-pequena extrema-direita" viewBox="0 0 180 100" aria-hidden="true">
-        <path d="M10 35 Q45 5 90 28 Q135 5 170 35 Q150 90 105 72 Q90 65 75 72 Q30 90 10 35Z" fill="#765020" stroke="#4c321b" stroke-width="5"/>
-        <path d="M35 38 Q55 25 75 43 Q60 60 40 52Z M105 43 Q125 25 145 38 L140 52 Q120 60 105 43Z" fill="#e9d19b"/>
-        <path d="M90 28 L90 72" stroke="#d7b46f" stroke-width="4"/>
+        <defs>
+          <linearGradient id="ouro4" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fff0bd"/>
+            <stop offset="35%" stop-color="#d6a94e"/>
+            <stop offset="70%" stop-color="#8b5a20"/>
+            <stop offset="100%" stop-color="#f4d58d"/>
+          </linearGradient>
+        </defs>
+        <path d="M8 36 Q25 14 52 20 Q73 20 90 30 Q107 20 128 20 Q155 14 172 36 Q158 57 143 70 Q119 86 90 69 Q61 86 37 70 Q22 57 8 36Z" fill="url(#ouro4)" stroke="#f0d18a" stroke-width="3"/>
+        <path d="M25 39 Q48 24 77 41 Q65 60 43 54 Q30 51 25 39Z M103 41 Q132 24 155 39 Q150 51 137 54 Q115 60 103 41Z" fill="#080706" stroke="#6e481b" stroke-width="2"/>
+        <path d="M90 30 Q82 48 90 69" fill="none" stroke="#fff0c4" stroke-width="3"/>
+        <path d="M12 34 Q2 18 8 8 M168 34 Q178 18 172 8" fill="none" stroke="#e8c477" stroke-width="3"/>
+        <circle cx="90" cy="21" r="4" fill="#fff0bd"/>
       </svg>
 
     </div>
@@ -626,4 +704,5 @@ function abrirConvite() {
 </script>
 
 </body>
-</html>
+  </html>
+  
