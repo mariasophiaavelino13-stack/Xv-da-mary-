@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -204,6 +205,46 @@ body::before {
     0 20px 45px rgba(38, 22, 8, .55),
     inset 0 0 35px rgba(106, 66, 25, .25);
   text-align: center;
+}
+
+/* ANIMAÇÃO DE FECHAMENTO DO PERGAMINHO */
+.pergaminho.fechando {
+  transform-origin: center center;
+  animation: enrolarPergaminho 1.8s ease-in forwards;
+  overflow: hidden;
+}
+
+@keyframes enrolarPergaminho {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+    clip-path: inset(0 0 0 0);
+  }
+  45% {
+    opacity: 1;
+    transform: scaleY(.12);
+    clip-path: inset(44% 0 44% 0);
+  }
+  75% {
+    opacity: .8;
+    transform: scaleY(.06);
+    clip-path: inset(47% 0 47% 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+    clip-path: inset(50% 0 50% 0);
+  }
+}
+
+#convite.saindo {
+  animation: desaparecerConvite 1.8s ease-in forwards;
+}
+
+@keyframes desaparecerConvite {
+  to {
+    opacity: 0;
+  }
 }
 
 /* MOLDURA INTERNA */
@@ -507,7 +548,7 @@ h1 {
 </section>
 
 <section id="convite">
-  <div class="pergaminho">
+  <div class="pergaminho" id="pergaminho">
 
     <div class="rolinho topo"></div>
     <div class="rolinho base"></div>
@@ -678,7 +719,7 @@ h1 {
       <div class="assinado">ASSINADO, DEBUTANTE.</div>
     </div>
 
-    <button class="botao" onclick="alert('Em breve, confirmação de presença!')">
+    <button class="botao" id="botaoConfirmar" onclick="confirmarPresenca()">
       CONFIRMAÇÃO DE PRESENÇA
     </button>
 
@@ -701,8 +742,33 @@ function abrirConvite() {
     window.scrollTo(0, 0);
   }, 1250);
 }
+
+function confirmarPresenca() {
+  const pergaminho = document.getElementById('pergaminho');
+  const convite = document.getElementById('convite');
+  const botao = document.getElementById('botaoConfirmar');
+
+  if (botao.disabled) return;
+
+  botao.disabled = true;
+  botao.textContent = 'OBRIGADA PELA CONFIRMAÇÃO';
+
+  const telefone = '5521983667385';
+  const mensagem = 'Olá! Estou passando para confirmar minha presença nos 15 anos da debutante. Será um prazer participar dessa noite tão especial! ✨';
+  const linkWhatsApp = 'https://wa.me/' + telefone + '?text=' + encodeURIComponent(mensagem);
+
+  // Abre o WhatsApp com a mensagem pronta
+  window.open(linkWhatsApp, '_blank');
+
+  // Enrola e faz o pergaminho desaparecer
+  pergaminho.classList.add('fechando');
+  convite.classList.add('saindo');
+
+  setTimeout(() => {
+    convite.style.display = 'none';
+  }, 1800);
+}
 </script>
 
 </body>
-  </html>
-  
+</html>
