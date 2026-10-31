@@ -4,17 +4,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XV da Mary | Baile de Máscaras</title>
+<title>XV da Mari</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --vinho: #681d30;
-  --vinho-escuro: #290d17;
-  --dourado: #b18a50;
-  --marfim: #f4ead7;
-  --texto: #35251f;
+  --vinho: #641b2b;
+  --vinho-escuro: #3d101c;
+  --dourado: #b89550;
+  --dourado-claro: #e1c98d;
+  --papel: #f4ead3;
+  --papel-escuro: #e8d8b8;
 }
 
 * {
@@ -24,40 +25,38 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(ellipse at top, #57303a, #1b0b12 75%);
-  color: var(--marfim);
-  font-family: 'Cormorant Garamond', serif;
-}
-
-/* ENVELOPE */
-
-#entrada {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px;
-  transition: opacity 1s ease;
+  padding: 25px 14px;
+  background:
+    radial-gradient(circle at center, #49313a, #170e15 85%);
+  color: var(--vinho-escuro);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 470px;
+  text-align: center;
 }
 
 .envelope {
-  width: min(390px, 88vw);
-  height: 255px;
   position: relative;
+  width: 100%;
+  height: 300px;
+  margin: 0 auto;
+  perspective: 1000px;
   cursor: pointer;
-  perspective: 900px;
-  filter: drop-shadow(0 20px 30px #0009);
+  filter: drop-shadow(0 18px 22px #0008);
 }
 
 .envelope-base {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background:
-    radial-gradient(circle at 20% 20%, #fff7df55, transparent 40%),
-    linear-gradient(135deg, #e9d7b6, #c8ad82);
-  border: 2px solid #a98753;
-  border-radius: 4px;
+  background: linear-gradient(145deg, var(--papel), var(--papel-escuro));
+  border: 2px solid var(--dourado);
+  border-radius: 5px;
   overflow: hidden;
 }
 
@@ -65,76 +64,89 @@ body {
   content: "";
   position: absolute;
   inset: 12px;
-  border: 1px solid #a27b42;
+  border: 1px solid var(--dourado);
+  opacity: .7;
 }
 
-.envelope-base::after {
-  content: "✦";
+.envelope-left,
+.envelope-right,
+.envelope-bottom {
   position: absolute;
-  top: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #96703b;
-  font-size: 24px;
+  inset: 0;
+  z-index: 2;
 }
 
-/* TEXTO NA FRENTE DA ABA */
-
-.envelope-text {
-  position: absolute;
-  top: 65px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: #553b2b;
-  font-family: 'Great Vibes', cursive;
-  font-size: 38px;
-  z-index: 6;
-  pointer-events: none;
+.envelope-left {
+  background: linear-gradient(135deg, #ead9b7, #f7edd9);
+  clip-path: polygon(0 0, 52% 52%, 0 100%);
 }
 
-.envelope-sub {
-  position: absolute;
-  top: 115px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: #745332;
-  font-family: 'Playfair Display', serif;
-  font-size: 10px;
-  letter-spacing: 4px;
-  z-index: 6;
-  pointer-events: none;
+.envelope-right {
+  background: linear-gradient(225deg, #ead9b7, #f7edd9);
+  clip-path: polygon(100% 0, 48% 52%, 100% 100%);
+}
+
+.envelope-bottom {
+  background: linear-gradient(15deg, #e3d0ac, #f5e8cf);
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
 }
 
 .aba {
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, #f0dfc0, #b99767);
-  clip-path: polygon(0 0, 100% 0, 50% 65%);
-  transform-origin: top;
-  transition: transform 1s ease;
   z-index: 4;
-  border-top: 2px solid #a17a43;
+  background: linear-gradient(145deg, #f8efdE, #dfc99f);
+  clip-path: polygon(0 0, 100% 0, 50% 57%);
+  border-top: 2px solid var(--dourado);
+  transform-origin: top center;
+  transition: transform 1s ease;
+  backface-visibility: hidden;
+}
+
+.envelope-text {
+  position: absolute;
+  z-index: 6;
+  top: 35px;
+  left: 0;
+  right: 0;
+  color: var(--vinho);
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(42px, 10vw, 56px);
+  text-shadow: 0 1px 1px #fff8;
+  pointer-events: none;
+}
+
+.envelope-sub {
+  position: absolute;
+  z-index: 6;
+  top: 105px;
+  left: 0;
+  right: 0;
+  color: #8b6a35;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  pointer-events: none;
 }
 
 .lacre {
   position: absolute;
-  left: 50%;
-  top: 78%;
-  transform: translate(-50%, -50%);
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 35% 30%, #a94b58, #65192b 65%, #3c0d1b);
-  border: 3px double #c6a36c;
-  color: #e8cb91;
-  font-size: 27px;
   z-index: 7;
-  box-shadow: 0 4px 10px #0006;
-  transition: opacity .5s;
+  top: 78%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #8b3447, #541321 75%);
+  border: 2px solid var(--dourado);
+  box-shadow: 0 3px 8px #0004;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dourado-claro);
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
 }
 
 .envelope.aberto .aba {
@@ -143,30 +155,42 @@ body {
 
 .envelope.aberto .lacre {
   opacity: 0;
+  transition: opacity .3s ease;
 }
 
-.instrucao {
-  position: absolute;
-  bottom: -48px;
-  width: 100%;
-  text-align: center;
-  color: #e5c995;
+.hint {
+  color: var(--dourado-claro);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
   letter-spacing: 2px;
-  font-size: 13px;
+  margin-top: 22px;
+  text-transform: uppercase;
 }
 
-/* CONVITE */
-
-#convite {
+.convite {
   display: none;
-  padding: 35px 15px 60px;
-  animation: aparecer 1.4s ease forwards;
+  position: relative;
+  width: 100%;
+  margin: 28px auto 0;
+  padding: 35px 23px;
+  background:
+    radial-gradient(ellipse at center, #fff8e9 0%, var(--papel) 75%);
+  border: 2px solid var(--dourado);
+  outline: 1px solid var(--dourado);
+  outline-offset: 6px;
+  box-shadow: 0 15px 35px #0007;
+  overflow: hidden;
+}
+
+.convite.visivel {
+  display: block;
+  animation: aparecer 1.2s ease both;
 }
 
 @keyframes aparecer {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
@@ -174,238 +198,126 @@ body {
   }
 }
 
-.cartao {
-  position: relative;
-  width: min(680px, 100%);
-  margin: auto;
-  padding: 15px;
-  background: linear-gradient(145deg, #f8eedb, #e9d7b9);
-  color: var(--texto);
-  box-shadow: 0 20px 70px #0009;
-}
-
 .moldura {
-  position: relative;
-  border: 2px solid var(--dourado);
-  outline: 1px solid #c8a56c;
-  outline-offset: 5px;
-  padding: 50px 35px;
-  text-align: center;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at center, #fff9ed 0%, #f0e2c9 100%);
-}
-
-.moldura::before,
-.moldura::after {
-  content: "❧";
   position: absolute;
+  inset: 12px;
+  border: 1px solid #b89550a8;
+  pointer-events: none;
+}
+
+.detalhe {
   color: var(--dourado);
-  font-size: 48px;
-  opacity: .75;
-}
-
-.moldura::before {
-  top: 8px;
-  left: 12px;
-}
-
-.moldura::after {
-  bottom: 8px;
-  right: 12px;
-  transform: rotate(180deg);
-}
-
-.linha {
-  width: 75%;
-  height: 1px;
-  margin: 22px auto;
-  background: linear-gradient(to right, transparent, var(--dourado), transparent);
+  font-size: 22px;
+  letter-spacing: 8px;
+  margin: 8px 0 16px;
 }
 
 .topo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #8a6a36;
   text-transform: uppercase;
-  letter-spacing: 4px;
-  color: var(--vinho);
-  font-size: 12px;
 }
 
-.chamada {
+.titulo {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(42px, 9vw, 68px);
+  font-size: clamp(48px, 12vw, 65px);
+  line-height: 1.1;
   color: var(--vinho);
-  margin: 18px 0 0;
-  font-weight: 400;
+  margin: 10px 0;
+  font-weight: normal;
 }
 
 .subtitulo {
-  font-family: 'Playfair Display', serif;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #89683f;
+  font-family: 'Cinzel', serif;
   font-size: 12px;
-  margin-top: 8px;
-}
-
-.ornamento {
-  color: var(--dourado);
-  font-size: 25px;
-  margin: 20px 0;
-}
-
-/* DUAS MÁSCARAS NOS CANTOS */
-
-.mascaras {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 25px 0;
-  padding: 0 4px;
-}
-
-.mascara {
-  width: 115px;
-  height: 70px;
-  position: relative;
-  transform: rotate(-8deg);
-}
-
-.mascara.direita {
-  transform: rotate(8deg) scaleX(-1);
-}
-
-.mascara svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-/* TEXTO DO CONVITE */
-
-.texto-convite {
-  max-width: 470px;
-  margin: auto;
-  font-size: 21px;
-  line-height: 1.55;
-  color: #49362c;
-}
-
-.texto-convite strong {
-  color: var(--vinho);
-  font-weight: 700;
-}
-
-.destaque {
-  font-family: 'Playfair Display', serif;
-  font-size: 14px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
+  color: #98743d;
   text-transform: uppercase;
-  color: var(--vinho);
-  margin: 28px 0 10px;
+}
+
+.texto {
+  font-size: 19px;
+  line-height: 1.5;
+  color: #49333a;
+  margin: 25px 5px;
 }
 
 .nome {
   font-family: 'Great Vibes', cursive;
+  font-size: 44px;
   color: var(--vinho);
-  font-size: clamp(48px, 10vw, 75px);
-  margin: 8px 0;
+  margin: 8px 0 15px;
 }
 
-.detalhes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  max-width: 470px;
-  margin: 30px auto;
+.dados {
+  margin: 22px 0;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  line-height: 2.2;
+  letter-spacing: 1px;
+  color: #60454a;
 }
 
-.detalhe {
-  border: 1px solid #c4a16b;
-  padding: 15px 8px;
-  background: #f7edda99;
-}
-
-.detalhe span {
-  display: block;
-  color: #987443;
-  font-family: 'Playfair Display', serif;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 7px;
-}
-
-.detalhe strong {
-  font-size: 19px;
-  font-weight: 600;
+.dados strong {
   color: var(--vinho);
 }
 
 .frase-final {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  color: #745139;
-  font-size: 17px;
-  line-height: 1.6;
-  margin: 25px auto;
-  max-width: 440px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 27px;
+  color: #8b6938;
+  margin: 20px 0;
 }
 
-.assinatura {
-  font-family: 'Great Vibes', cursive;
-  font-size: 38px;
-  color: var(--vinho);
-  margin-top: 20px;
+.mascara {
+  position: absolute;
+  width: 70px;
+  height: 42px;
+  top: 18px;
+  opacity: .9;
+}
+
+.mascara.esquerda {
+  left: 17px;
+}
+
+.mascara.direita {
+  right: 17px;
+  transform: scaleX(-1);
 }
 
 .confirmar {
   display: inline-block;
-  margin-top: 20px;
-  padding: 14px 28px;
-  border: 1px solid #d0b077;
-  background: linear-gradient(135deg, #77283b, #3c101e);
-  color: #f8e9ce;
+  margin-top: 12px;
+  padding: 13px 22px;
+  background: var(--vinho);
+  border: 1px solid var(--dourado);
+  color: #fff4df;
   text-decoration: none;
-  text-transform: uppercase;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
   letter-spacing: 2px;
-  font-family: 'Playfair Display', serif;
-  font-size: 11px;
   transition: .3s;
 }
 
 .confirmar:hover {
-  background: #9a4254;
+  background: var(--vinho-escuro);
   transform: translateY(-2px);
 }
 
-.rodape {
-  margin-top: 28px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: #967348;
-  text-transform: uppercase;
-}
-
-@media (max-width: 480px) {
-  .moldura {
-    padding: 40px 18px;
+@media (max-width: 380px) {
+  .envelope {
+    height: 260px;
   }
 
-  .texto-convite {
-    font-size: 19px;
+  .convite {
+    padding: 30px 17px;
   }
 
   .mascara {
-    width: 95px;
-  }
-
-  .detalhes {
-    gap: 9px;
-  }
-
-  .envelope-text {
-    font-size: 34px;
+    width: 55px;
   }
 }
 </style>
@@ -413,151 +325,107 @@ body {
 
 <body>
 
-<section id="entrada">
+<main class="container">
+
   <div class="envelope" id="envelope" onclick="abrirConvite()">
-
     <div class="envelope-base"></div>
+    <div class="envelope-left"></div>
+    <div class="envelope-right"></div>
+    <div class="envelope-bottom"></div>
 
-    <div class="envelope-text">XV da Mary</div>
+    <div class="envelope-text">XV da Mari</div>
     <div class="envelope-sub">UM CONVITE ESPECIAL</div>
 
     <div class="aba"></div>
 
-    <div class="lacre">✦</div>
-
-    <div class="instrucao">TOQUE PARA ABRIR</div>
+    <div class="lacre">M</div>
   </div>
-</section>
 
-<main id="convite">
-  <div class="cartao">
-    <div class="moldura">
+  <div class="hint" id="hint">Toque no envelope para abrir</div>
 
-      <div class="topo">Uma noite de mistério e elegância</div>
+  <section class="convite" id="convite">
 
-      <div class="ornamento">✦ ❧ ✦</div>
+    <div class="moldura"></div>
 
-      <h1 class="chamada">The Royal Masquerade</h1>
+    <svg class="mascara esquerda" viewBox="0 0 120 70" aria-hidden="true">
+      <path d="M8 25 Q30 4 55 23 Q60 29 60 34 Q60 29 65 23 Q90 4 112 25 Q104 53 77 48 Q65 45 60 36 Q55 45 43 48 Q16 53 8 25Z"
+        fill="#641b2b" stroke="#b89550" stroke-width="3"/>
+      <path d="M12 26 Q34 12 54 27 Q44 36 28 35 Q18 34 12 26Z"
+        fill="#f4ead3"/>
+      <path d="M108 26 Q86 12 66 27 Q76 36 92 35 Q102 34 108 26Z"
+        fill="#f4ead3"/>
+    </svg>
 
-      <div class="subtitulo">Baile de máscaras</div>
+    <svg class="mascara direita" viewBox="0 0 120 70" aria-hidden="true">
+      <path d="M8 25 Q30 4 55 23 Q60 29 60 34 Q60 29 65 23 Q90 4 112 25 Q104 53 77 48 Q65 45 60 36 Q55 45 43 48 Q16 53 8 25Z"
+        fill="#641b2b" stroke="#b89550" stroke-width="3"/>
+      <path d="M12 26 Q34 12 54 27 Q44 36 28 35 Q18 34 12 26Z"
+        fill="#f4ead3"/>
+      <path d="M108 26 Q86 12 66 27 Q76 36 92 35 Q102 34 108 26Z"
+        fill="#f4ead3"/>
+    </svg>
 
-      <div class="linha"></div>
+    <div class="detalhe">✦ ❧ ✦</div>
 
-      <div class="mascaras">
+    <div class="topo">Você é nossa convidada especial</div>
 
-        <div class="mascara">
-          <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 40 Q30 5 65 29 Q80 42 80 38 Q80 42 95 29 Q130 5 152 40 Q135 62 110 65 Q90 65 80 53 Q70 65 50 65 Q25 62 8 40Z"
-              fill="#641b2c" stroke="#b18a50" stroke-width="3"/>
-            <path d="M15 40 Q40 22 65 38 Q48 49 30 48Z" fill="#f4ead7"/>
-            <path d="M145 40 Q120 22 95 38 Q112 49 130 48Z" fill="#f4ead7"/>
-            <path d="M8 40 Q30 5 65 29 Q80 42 80 38 Q80 42 95 29 Q130 5 152 40"
-              fill="none" stroke="#d6b77e" stroke-width="2"/>
-            <circle cx="80" cy="39" r="5" fill="#d6b77e"/>
-            <path d="M25 25 Q42 8 55 18 M135 25 Q118 8 105 18"
-              fill="none" stroke="#d6b77e" stroke-width="2"/>
-          </svg>
-        </div>
+    <h1 class="titulo">XV da Mari</h1>
 
-        <div class="mascara direita">
-          <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 40 Q30 5 65 29 Q80 42 80 38 Q80 42 95 29 Q130 5 152 40 Q135 62 110 65 Q90 65 80 53 Q70 65 50 65 Q25 62 8 40Z"
-              fill="#641b2c" stroke="#b18a50" stroke-width="3"/>
-            <path d="M15 40 Q40 22 65 38 Q48 49 30 48Z" fill="#f4ead7"/>
-            <path d="M145 40 Q120 22 95 38 Q112 49 130 48Z" fill="#f4ead7"/>
-            <path d="M8 40 Q30 5 65 29 Q80 42 80 38 Q80 42 95 29 Q130 5 152 40"
-              fill="none" stroke="#d6b77e" stroke-width="2"/>
-            <circle cx="80" cy="39" r="5" fill="#d6b77e"/>
-            <path d="M25 25 Q42 8 55 18 M135 25 Q118 8 105 18"
-              fill="none" stroke="#d6b77e" stroke-width="2"/>
-          </svg>
-        </div>
+    <div class="subtitulo">Baile de máscaras</div>
 
-      </div>
+    <p class="texto">
+      Com muita alegria, convido você para celebrar
+      comigo uma noite muito especial.
+      Sua presença tornará esse momento ainda mais inesquecível.
+    </p>
 
-      <div class="linha"></div>
+    <div class="nome">Mari</div>
 
-      <div class="destaque">
-        Você está cordialmente convidado(a) para celebrar
-      </div>
-
-      <div class="nome">XV da Mary</div>
-
-      <div class="ornamento">❧ ✦ ❧</div>
-
-      <div class="texto-convite">
-        Por trás de cada máscara existe um segredo.
-        E por trás desta noite existe um sonho:
-        celebrar meus quinze anos ao lado de pessoas especiais.
-        <br><br>
-        Prepare-se para uma noite de
-        <strong>mistério, elegância e encanto</strong>,
-        onde cada detalhe guarda uma surpresa
-        e cada momento merece ser lembrado.
-      </div>
-
-      <div class="linha"></div>
-
-      <div class="destaque">Detalhes da celebração</div>
-
-      <div class="detalhes">
-
-        <div class="detalhe">
-          <span>Data</span>
-          <strong>A DEFINIR</strong>
-        </div>
-
-        <div class="detalhe">
-          <span>Horário</span>
-          <strong>A DEFINIR</strong>
-        </div>
-
-        <div class="detalhe" style="grid-column: 1 / -1;">
-          <span>Local</span>
-          <strong>A DEFINIR</strong>
-        </div>
-
-      </div>
-
-      <div class="frase-final">
-        "As máscaras estão prontas. E você, está preparado(a)
-        para uma noite inesquecível?"
-      </div>
-
-      <div class="assinatura">Com carinho, Mary</div>
-
-      <a class="confirmar"
-         href="https://wa.me/5521983667385?text=Ol%C3%A1!%20Estou%20passando%20para%20confirmar%20minha%20presen%C3%A7a%20nos%2015%20anos%20da%20Mary."
-         target="_blank"
-         rel="noopener">
-        Confirmar presença
-      </a>
-
-      <div class="rodape">
-        Uma noite de mistério e elegância
-      </div>
-
+    <div class="dados">
+      <div><strong>DATA</strong><br>A DEFINIR</div>
+      <div><strong>HORÁRIO</strong><br>A DEFINIR</div>
+      <div><strong>LOCAL</strong><br>A DEFINIR</div>
     </div>
-  </div>
+
+    <div class="detalhe">✦ ❧ ✦</div>
+
+    <div class="frase-final">
+      Espero você para essa noite especial!
+    </div>
+
+    <a class="confirmar"
+       href="https://wa.me/5521983667385?text=Ol%C3%A1!%20Quero%20confirmar%20minha%20presen%C3%A7a%20nos%20XV%20da%20Mari."
+       target="_blank"
+       rel="noopener">
+      CONFIRMAR PRESENÇA
+    </a>
+
+  </section>
+
 </main>
 
 <script>
+let aberto = false;
+
 function abrirConvite() {
-  const envelope = document.getElementById('envelope');
-  const entrada = document.getElementById('entrada');
-  const convite = document.getElementById('convite');
+  if (aberto) return;
 
-  envelope.classList.add('aberto');
+  aberto = true;
+
+  const envelope = document.getElementById("envelope");
+  const convite = document.getElementById("convite");
+  const hint = document.getElementById("hint");
+
+  envelope.classList.add("aberto");
+  hint.style.display = "none";
 
   setTimeout(() => {
-    entrada.style.opacity = '0';
-  }, 650);
-
-  setTimeout(() => {
-    entrada.style.display = 'none';
-    convite.style.display = 'block';
-    window.scrollTo(0, 0);
-  }, 1500);
+    convite.classList.add("visivel");
+    convite.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 800);
 }
 </script>
 
