@@ -9,22 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse at center, #4b1724 0%, #210b13 65%, #12070c 100%);
+  background: radial-gradient(ellipse at center, #4b1724 0%, #210b13 65%, #12070c 100%);
   color: #ead9b5;
   font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
-}
-
-button {
-  font: inherit;
 }
 
 .screen {
@@ -35,7 +28,7 @@ button {
   padding: 28px 16px;
 }
 
-/* TELA DO ENVELOPE */
+/* ENVELOPE */
 
 #envelopeScreen {
   flex-direction: column;
@@ -184,8 +177,7 @@ button {
   position: relative;
   text-align: center;
   color: #493027;
-  background:
-    radial-gradient(ellipse at top, #fff7e5, #e9d8b8 75%);
+  background: radial-gradient(ellipse at top, #fff7e5, #e9d8b8 75%);
   border: 5px double #ad874a;
   outline: 1px solid #d7bb7e;
   outline-offset: 7px;
@@ -320,13 +312,8 @@ button {
 }
 
 @media (max-width: 380px) {
-  .invitation {
-    padding: 28px 17px;
-  }
-
-  .message {
-    font-size: 18px;
-  }
+  .invitation { padding: 28px 17px; }
+  .message { font-size: 18px; }
 }
 </style>
 </head>
@@ -336,7 +323,10 @@ button {
 <section class="screen" id="envelopeScreen">
   <div class="intro">UMA NOITE ESPECIAL ESPERA POR VOCÊ</div>
 
-  <div class="envelope-area" onclick="openInvitation()" role="button" aria-label="Abrir convite">
+  <div class="envelope-area"
+       onclick="openInvitation()"
+       role="button"
+       aria-label="Abrir convite">
     <div class="envelope">
       <div class="flap"></div>
       <div class="envelope-front"></div>
@@ -399,8 +389,9 @@ button {
     <div class="signature">Um beijo da sua debutante</div>
 
     <a class="rsvp"
-       href="https://wa.me/5521983667385?text=Ol%C3%A1!%20Confirmo%20minha%20presen%C3%A7a%20no%20XV%20da%20Mari."
-       target="_blank">
+       href="https://wa.me/5521983667385?text=Ol%C3%A1%21%20Estou%20passando%20para%20confirmar%20minha%20presen%C3%A7a%20nos%2015%20anos%20da%20debutante.%20Ser%C3%A1%20um%20prazer%20participar%20dessa%20noite%20t%C3%A3o%20especial%21%20%E2%9C%A8"
+       target="_blank"
+       rel="noopener noreferrer">
       CONFIRMAR PRESENÇA
     </a>
 
